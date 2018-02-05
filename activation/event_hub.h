@@ -41,7 +41,7 @@ private:
     void* token;
     voice_event_callback event_callback;
     
-    bool loop;
+    bool thread_exit;
 };
     
 }

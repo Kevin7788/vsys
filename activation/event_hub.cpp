@@ -13,13 +13,13 @@
 
 namespace vsys {
     
-EventHub::EventHub(): loop(true){
+EventHub::EventHub(): thread_exit(false){
     thread = std::thread(&EventHub::thread_loop, this);
     event_callback = [](voice_event_t* voice_event, void* token){VSYS_DEBUGI("--------------------------------           %d", voice_event->event);};
 }
 
 EventHub::~EventHub(){
-    loop = false;
+    thread_exit = true;
     if(thread.joinable()){
         condition.notify_all();
         thread.join();
@@ -40,22 +40,20 @@ void EventHub::send_voice_event(voice_event_t *voice_event){
 void EventHub::thread_loop(){
     
     std::unique_lock<decltype(mutex)> locker(mutex, std::defer_lock);
-    
-    while (loop) {
+    while (true) {
         locker.lock();
-        condition.wait(locker, [this]{return !voice_events.empty() || !loop;});
+        condition.wait(locker, [this]{return !voice_events.empty();});
+        if(thread_exit) break;
+
+        voice_event_t* voice_event = voice_events.front();
+        voice_events.pop_front();
         
-        if(!voice_events.empty()){
-            voice_event_t* voice_event = voice_events.front();
-            voice_events.pop_front();
-            
-            locker.unlock();
-            
-            event_callback(voice_event, token);
-            delete[] (char *)voice_event;
-        }
+        locker.unlock();
+        
+        event_callback(voice_event, token);
+        delete[] (char *)voice_event;
     }
-    VSYS_DEBUGI("event thread exit  %d", loop);
+    VSYS_DEBUGI("event thread exit  %d", thread_exit);
 }
     
 }

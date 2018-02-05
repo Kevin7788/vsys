@@ -1,7 +1,6 @@
 
 #include <math.h>
 #include <string.h>
-#include <stdarg.h>
 #include <assert.h>
 
 #include "r2mem_cod.h"

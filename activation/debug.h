@@ -13,6 +13,7 @@
 #define LOG_TAG NULL
 #endif
 
+#if 1
 #if defined(__ANDROID__) || defined(ANDROID)
 #include <android/log.h>
 #define VSYS_DEBUGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
@@ -35,6 +36,11 @@
     ltm.tm_mon, ltm.tm_mday, \
     ltm.tm_hour, ltm.tm_min, ltm.tm_sec, \
     tv.tv_usec / 1000, getpid(), level, tag);
+#endif
+#else
+#define VSYS_DEBUGD(...)
+#define VSYS_DEBUGI(...)
+#define VSYS_DEBUGE(...)
 #endif
 
 #endif /* DEBUG_H */

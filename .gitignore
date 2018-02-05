@@ -4,3 +4,5 @@ thirdlib
 **/data/workdir_*
 Makefile
 *.mk
+*.pcm
+*.zip

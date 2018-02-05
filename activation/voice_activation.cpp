@@ -292,6 +292,7 @@ int32_t VoiceActivation::process(const uint8_t* input, const size_t& byte_size){
     uint32_t offset = buff_offset, offset2 = 0;
     
     int32_t ret = 0;
+//    std::chrono::steady_clock::time_point tp = std::chrono::steady_clock::now();
     for (uint32_t i = 0; i < num_frames; i++) {
         for (uint32_t j = 0; j < num_channels; j++) {
             memcpy(buff[j] + offset, data_mul[mic_ids[j]] + i * frame_size - offset2, (frame_size - offset) * sizeof(float));
@@ -303,6 +304,8 @@ int32_t VoiceActivation::process(const uint8_t* input, const size_t& byte_size){
         offset = 0;
         offset2 = buff_offset;
     }
+//    auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - tp);
+//    VSYS_DEBUGI("----------------------------------------                  %lld", elapsed.count());
     buff_offset = total % frame_size;
     uint32_t length = total > frame_size ? buff_offset : len_mul;
     for (uint32_t i = 0; i < num_channels; i++) {

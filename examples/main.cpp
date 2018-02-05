@@ -5,6 +5,7 @@
 //  Created by 薯条 on 2017/12/24.
 //  Copyright © 2017年 薯条. All rights reserved.
 //
+#define LOT_TAG "examples"
 
 #define CHANNEL_NUM 2
 #define SPEAKER_NUM 2
@@ -12,7 +13,7 @@
 #define FRAME_SIZE 160
 #define FRAME_SIZE_SPEEX 256
 
-#define SAMPLE_RATE 16000
+#define SAMPLE_RATE 48000
 #define SPEEX_AEC_TAIL 1024
 
 #include <iostream>
@@ -23,14 +24,15 @@
 #include <mutex>
 #include <semaphore.h>
 
-#include "vsys_activation.h"
+#include "debug.h"
 #include "audio_processing.h"
+#include "vsys_activation.h"
 #include "speex_preprocess.h"
 #include "speex_echo.h"
 
 std::ifstream pcm_in("/Users/daixiang/Desktop/vsys/data/sounds/baomao_M_0020.wav.f32.pcm", std::ios::in | std::ios::binary);
-//std::ifstream pcm_in("/Users/daixiang/Desktop/vsys/data/sounds/baomao_M_0020.wav.f32.pcm", std::ios::in | std::ios::binary);
-std::ifstream pcm_out("/Users/daixiang/Desktop/vsys/data/sounds/pcm_out.pcm", std::ios::out | std::ios::binary);
+//std::ifstream pcm_in("/Users/daixiang/Desktop/vsys/data/sounds/aec.16bit.pcm", std::ios::in | std::ios::binary);
+std::ofstream pcm_out("/Users/daixiang/Desktop/vsys/data/sounds/pcm_out.pcm", std::ios::out | std::ios::binary);
 
 char buff[8192];
 float input[8192];
@@ -91,7 +93,7 @@ void test_activation(){
     VsysActivation_Free(handle);
 }
 
-void test_aec(){
+void test_audio_processing(){
     SpeexPreprocessState** preprocess_states = new SpeexPreprocessState*[CHANNEL_NUM];
     SpeexEchoState** echo_states = new SpeexEchoState*[SPEAKER_NUM];
     
@@ -125,9 +127,10 @@ void test_aec(){
         
         std::mutex mutex;
         std::unique_lock<decltype(mutex)> locker(mutex, std::defer_lock);
+        
         while (loop) {
             sem_wait(resume_ref);
-            
+
             locker.lock();
             uint32_t task_id = *tasks.begin();
             tasks.pop_front();
@@ -151,6 +154,7 @@ void test_aec(){
     
     uint32_t num_channels = CHANNEL_NUM + SPEAKER_NUM;
     uint32_t total = num_channels * FRAME_SIZE_SPEEX;
+
     while (pcm_in.good()) {
         pcm_in.read(buff, total * sizeof(short));
         for (uint32_t i = 0; i < num_channels; i++) {
@@ -170,6 +174,7 @@ void test_aec(){
         for (uint32_t i = 0; i < CHANNEL_NUM; i++) {
             sem_wait(pause_ref);
         }
+        pcm_out.write((char *)output, FRAME_SIZE_SPEEX * sizeof(float));
     }
 
     loop = false;
@@ -193,12 +198,10 @@ void test_aec(){
 }
 
 int main(int argc, const char * argv[]) {
-    time_t t1, t2;
-    time(&t1);
-    
+    std::chrono::steady_clock::time_point tp = std::chrono::steady_clock::now();
+//    test_audio_processing();
     test_activation();
-    
-    time(&t2);
-    printf("已运行%d秒\n",t2-t1);
+    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - tp);
+    VSYS_DEBUGI("已运行%lld毫秒\n", elapsed.count());
     return 0;
 }

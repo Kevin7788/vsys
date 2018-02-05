@@ -182,6 +182,9 @@
 		5B39726120280B0200B41305 /* lockwrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39725D20280B0200B41305 /* lockwrapper.h */; };
 		5B8F86DC202896D2004A883C /* audio_processing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B8F86DB202896D2004A883C /* audio_processing.cpp */; };
 		5B8F86DD20289906004A883C /* libcommon_audio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8F86CE2028968B004A883C /* libcommon_audio.a */; };
+		5B8F86E12028B50D004A883C /* audio_converter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B8F86DE2028B50C004A883C /* audio_converter.cpp */; };
+		5B8F86E22028B50D004A883C /* audio_converter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B8F86DF2028B50C004A883C /* audio_converter.h */; };
+		5B8F86E32028B50D004A883C /* buf_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B8F86E02028B50C004A883C /* buf_manager.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -379,6 +382,9 @@
 		5B8F86CE2028968B004A883C /* libcommon_audio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcommon_audio.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B8F86DA202896C4004A883C /* audio_processing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = audio_processing.h; sourceTree = "<group>"; };
 		5B8F86DB202896D2004A883C /* audio_processing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = audio_processing.cpp; sourceTree = "<group>"; };
+		5B8F86DE2028B50C004A883C /* audio_converter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = audio_converter.cpp; path = activation/audio_converter.cpp; sourceTree = SOURCE_ROOT; };
+		5B8F86DF2028B50C004A883C /* audio_converter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = audio_converter.h; path = activation/audio_converter.h; sourceTree = SOURCE_ROOT; };
+		5B8F86E02028B50C004A883C /* buf_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = buf_manager.h; path = activation/buf_manager.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -884,6 +890,9 @@
 		5B8F86D9202896A5004A883C /* audio_processing */ = {
 			isa = PBXGroup;
 			children = (
+				5B8F86DE2028B50C004A883C /* audio_converter.cpp */,
+				5B8F86DF2028B50C004A883C /* audio_converter.h */,
+				5B8F86E02028B50C004A883C /* buf_manager.h */,
 				5B3970BB2028014300B41305 /* aec */,
 				5B8F86DA202896C4004A883C /* audio_processing.h */,
 				5B8F86DB202896D2004A883C /* audio_processing.cpp */,
@@ -1028,6 +1037,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B8F86E32028B50D004A883C /* buf_manager.h in Headers */,
+				5B8F86E22028B50D004A883C /* audio_converter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1334,6 +1345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B8F86DC202896D2004A883C /* audio_processing.cpp in Sources */,
+				5B8F86E12028B50D004A883C /* audio_converter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

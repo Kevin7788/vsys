@@ -123,9 +123,9 @@ void test_audio_processing(){
 #endif
     
     bool thread_exit = false;
-    std::mutex mutex;
+    std::mutex task_mutex;
     auto thread_loop  = [&]{
-        std::unique_lock<decltype(mutex)> locker(mutex, std::defer_lock);
+        std::unique_lock<decltype(task_mutex)> locker(task_mutex, std::defer_lock);
         while (true) {
             sem_wait(resume_ref);
             if(thread_exit) break;
@@ -177,8 +177,8 @@ void test_audio_processing(){
     }
 
     thread_exit = true;
-    sem_post(resume_ref);
     for (uint32_t i = 0; i < MIC_CHANNEL; i++) {
+        sem_post(resume_ref);
         threads[i].join();
     }
     for (uint32_t i = 0; i < MIC_CHANNEL; i++) {

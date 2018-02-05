@@ -1,16 +1,16 @@
 //
-//  aec.cpp
+//  aec_wrap.cpp
 //  vsys
 //
-//  Created by 薯条 on 17/12/24.
-//  Copyright © 2017年 薯条. All rights reserved.
+//  Created by 薯条 on 18/2/5.
+//  Copyright © 2018年 薯条. All rights reserved.
 //
 #include <fstream>
 
-#include "aec.h"
+#include "aec_wrap.h"
 #include "buf_manager.h"
 
-namespace __vsys__ {
+namespace vsys {
     
 //std::ofstream pcm_out("/Users/daixiang/Desktop/vsys/data/sounds/pcm_out.pcm", std::ios::out | std::ios::binary);
 //Aec::Aec(const audio_format_t& audio_format, vsys_uint_t* mic_ids,

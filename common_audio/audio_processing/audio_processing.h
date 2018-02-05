@@ -9,14 +9,5 @@
 #ifndef AUDIO_PROCESSING_H
 #define AUDIO_PROCESSING_H
 
-namespace vsys {
-    
-class AudioProcess{
-public:
-    
-private:
-};
-    
-}
 
 #endif /* AUDIO_PROCESSING_H */

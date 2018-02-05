@@ -28,8 +28,8 @@
 		5B3970B6202800FC00B41305 /* voice_activation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3970A2202800FB00B41305 /* voice_activation.cpp */; };
 		5B3970B7202800FC00B41305 /* vsys_activation.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3970A3202800FB00B41305 /* vsys_activation.h */; };
 		5B3970BA2028013400B41305 /* cpu_relax.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3970B92028013400B41305 /* cpu_relax.h */; };
-		5B3970C02028014400B41305 /* aec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3970BC2028014300B41305 /* aec.cpp */; };
-		5B3970C12028014400B41305 /* aec.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3970BE2028014300B41305 /* aec.h */; };
+		5B3970C02028014400B41305 /* aec_wrap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3970BC2028014300B41305 /* aec_wrap.cpp */; };
+		5B3970C12028014400B41305 /* aec_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3970BE2028014300B41305 /* aec_wrap.h */; };
 		5B3970C4202801A400B41305 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3970C3202801A400B41305 /* main.cpp */; };
 		5B3971412028060100B41305 /* zcomp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3970D52028060000B41305 /* zcomp.cpp */; };
 		5B3971422028060100B41305 /* zcomp.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3970D62028060000B41305 /* zcomp.h */; };
@@ -182,8 +182,8 @@
 		5B39725F20280B0200B41305 /* fftw3.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39725B20280B0200B41305 /* fftw3.h */; };
 		5B39726020280B0200B41305 /* fftwrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B39725C20280B0200B41305 /* fftwrapper.cpp */; };
 		5B39726120280B0200B41305 /* lockwrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39725D20280B0200B41305 /* lockwrapper.h */; };
-		5B3972AF20287AE400B41305 /* audio_processing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B3972AE20287AE400B41305 /* audio_processing.cpp */; };
-		5B3972B020287C5500B41305 /* libaudio_processing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3972A220287A7E00B41305 /* libaudio_processing.a */; };
+		5B8F86DC202896D2004A883C /* audio_processing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B8F86DB202896D2004A883C /* audio_processing.cpp */; };
+		5B8F86DD20289906004A883C /* libcommon_audio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8F86CE2028968B004A883C /* libcommon_audio.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -222,8 +222,8 @@
 		5B3970A2202800FB00B41305 /* voice_activation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = voice_activation.cpp; sourceTree = "<group>"; };
 		5B3970A3202800FB00B41305 /* vsys_activation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vsys_activation.h; sourceTree = "<group>"; };
 		5B3970B92028013400B41305 /* cpu_relax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpu_relax.h; sourceTree = "<group>"; };
-		5B3970BC2028014300B41305 /* aec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aec.cpp; sourceTree = "<group>"; };
-		5B3970BE2028014300B41305 /* aec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aec.h; sourceTree = "<group>"; };
+		5B3970BC2028014300B41305 /* aec_wrap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aec_wrap.cpp; sourceTree = "<group>"; };
+		5B3970BE2028014300B41305 /* aec_wrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aec_wrap.h; sourceTree = "<group>"; };
 		5B3970C3202801A400B41305 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		5B3970C92028057100B41305 /* libr2vt4.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libr2vt4.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3970D52028060000B41305 /* zcomp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zcomp.cpp; sourceTree = "<group>"; };
@@ -380,8 +380,9 @@
 		5B39725D20280B0200B41305 /* lockwrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lockwrapper.h; sourceTree = "<group>"; };
 		5B39729320283B5600B41305 /* libr2vt5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libr2vt5.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3972A220287A7E00B41305 /* libaudio_processing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libaudio_processing.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		5B3972AD20287AC900B41305 /* audio_processing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = audio_processing.h; sourceTree = "<group>"; };
-		5B3972AE20287AE400B41305 /* audio_processing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = audio_processing.cpp; sourceTree = "<group>"; };
+		5B8F86CE2028968B004A883C /* libcommon_audio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcommon_audio.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B8F86DA202896C4004A883C /* audio_processing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = audio_processing.h; sourceTree = "<group>"; };
+		5B8F86DB202896D2004A883C /* audio_processing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = audio_processing.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -389,7 +390,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B3972B020287C5500B41305 /* libaudio_processing.a in Frameworks */,
+				5B8F86DD20289906004A883C /* libcommon_audio.a in Frameworks */,
 				5B3971AC2028075100B41305 /* libmkl_core.a in Frameworks */,
 				5B3971AD2028075100B41305 /* libmkl_intel_lp64.a in Frameworks */,
 				5B3971AE2028075100B41305 /* libmkl_sequential.a in Frameworks */,
@@ -435,6 +436,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5B8F86CB2028968B004A883C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -445,8 +453,7 @@
 				5B397085202800E400B41305 /* activation */,
 				5B3970CA2028057100B41305 /* r2vt4 */,
 				5B3971B620280A8200B41305 /* speex */,
-				5B39729420283B5600B41305 /* r2vt5 */,
-				5B3972A320287A7E00B41305 /* audio_processing */,
+				5B8F86CF2028968B004A883C /* common_audio */,
 				5B397077202800CF00B41305 /* Products */,
 				5B39719F2028061500B41305 /* Frameworks */,
 			);
@@ -461,6 +468,7 @@
 				5B3971B520280A8200B41305 /* libspeex.a */,
 				5B39729320283B5600B41305 /* libr2vt5.a */,
 				5B3972A220287A7E00B41305 /* libaudio_processing.a */,
+				5B8F86CE2028968B004A883C /* libcommon_audio.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -476,7 +484,6 @@
 		5B397085202800E400B41305 /* activation */ = {
 			isa = PBXGroup;
 			children = (
-				5B3970BB2028014300B41305 /* aec */,
 				5B3970B82028010D00B41305 /* include */,
 				5B397090202800FA00B41305 /* audio_converter.cpp */,
 				5B39709E202800FB00B41305 /* audio_converter.h */,
@@ -521,7 +528,7 @@
 		5B3970BB2028014300B41305 /* aec */ = {
 			isa = PBXGroup;
 			children = (
-				5B3970BC2028014300B41305 /* aec.cpp */,
+				5B3970BC2028014300B41305 /* aec_wrap.cpp */,
 				5B3970BD2028014300B41305 /* include */,
 			);
 			path = aec;
@@ -530,7 +537,7 @@
 		5B3970BD2028014300B41305 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				5B3970BE2028014300B41305 /* aec.h */,
+				5B3970BE2028014300B41305 /* aec_wrap.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -872,18 +879,20 @@
 			path = fft;
 			sourceTree = "<group>";
 		};
-		5B39729420283B5600B41305 /* r2vt5 */ = {
+		5B8F86CF2028968B004A883C /* common_audio */ = {
 			isa = PBXGroup;
 			children = (
+				5B8F86D9202896A5004A883C /* audio_processing */,
 			);
-			path = r2vt5;
+			path = common_audio;
 			sourceTree = "<group>";
 		};
-		5B3972A320287A7E00B41305 /* audio_processing */ = {
+		5B8F86D9202896A5004A883C /* audio_processing */ = {
 			isa = PBXGroup;
 			children = (
-				5B3972AD20287AC900B41305 /* audio_processing.h */,
-				5B3972AE20287AE400B41305 /* audio_processing.cpp */,
+				5B3970BB2028014300B41305 /* aec */,
+				5B8F86DA202896C4004A883C /* audio_processing.h */,
+				5B8F86DB202896D2004A883C /* audio_processing.cpp */,
 			);
 			path = audio_processing;
 			sourceTree = "<group>";
@@ -901,7 +910,7 @@
 				5B3970A9202800FC00B41305 /* r2math.h in Headers */,
 				5B3970BA2028013400B41305 /* cpu_relax.h in Headers */,
 				5B3970A4202800FC00B41305 /* event_hub.h in Headers */,
-				5B3970C12028014400B41305 /* aec.h in Headers */,
+				5B3970C12028014400B41305 /* aec_wrap.h in Headers */,
 				5B3970B1202800FC00B41305 /* buf_manager.h in Headers */,
 				5B3970B2202800FC00B41305 /* audio_converter.h in Headers */,
 				5B3970AC202800FC00B41305 /* vt_word_manager.h in Headers */,
@@ -1022,6 +1031,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5B8F86CC2028968B004A883C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -1127,6 +1143,23 @@
 			productReference = 5B3972A220287A7E00B41305 /* libaudio_processing.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		5B8F86CD2028968B004A883C /* common_audio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B8F86D82028968B004A883C /* Build configuration list for PBXNativeTarget "common_audio" */;
+			buildPhases = (
+				5B8F86CA2028968B004A883C /* Sources */,
+				5B8F86CB2028968B004A883C /* Frameworks */,
+				5B8F86CC2028968B004A883C /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = common_audio;
+			productName = common_audio;
+			productReference = 5B8F86CE2028968B004A883C /* libcommon_audio.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1160,6 +1193,10 @@
 						CreatedOnToolsVersion = 9.0.1;
 						ProvisioningStyle = Automatic;
 					};
+					5B8F86CD2028968B004A883C = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 5B397071202800CF00B41305 /* Build configuration list for PBXProject "vsys" */;
@@ -1180,6 +1217,7 @@
 				5B3971B420280A8200B41305 /* speex */,
 				5B39729220283B5600B41305 /* r2vt5 */,
 				5B3972A120287A7E00B41305 /* audio_processing */,
+				5B8F86CD2028968B004A883C /* common_audio */,
 			);
 		};
 /* End PBXProject section */
@@ -1198,7 +1236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B3970AF202800FC00B41305 /* vsys_activation.cpp in Sources */,
-				5B3970C02028014400B41305 /* aec.cpp in Sources */,
+				5B3970C02028014400B41305 /* aec_wrap.cpp in Sources */,
 				5B3970A7202800FC00B41305 /* vt_word_manager.cpp in Sources */,
 				5B3970B6202800FC00B41305 /* voice_activation.cpp in Sources */,
 				5B3970A8202800FC00B41305 /* r2math.cpp in Sources */,
@@ -1296,7 +1334,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B3972AF20287AE400B41305 /* audio_processing.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B8F86CA2028968B004A883C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B8F86DC202896D2004A883C /* audio_processing.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1536,6 +1581,30 @@
 			};
 			name = Release;
 		};
+		5B8F86D62028968B004A883C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5B8F86D72028968B004A883C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1598,6 +1667,15 @@
 			buildConfigurations = (
 				5B3972AB20287A7E00B41305 /* Debug */,
 				5B3972AC20287A7E00B41305 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5B8F86D82028968B004A883C /* Build configuration list for PBXNativeTarget "common_audio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B8F86D62028968B004A883C /* Debug */,
+				5B8F86D72028968B004A883C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

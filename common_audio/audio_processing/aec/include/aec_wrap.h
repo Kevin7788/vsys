@@ -1,17 +1,17 @@
 //
-//  aec.h
+//  aec_wrap.h
 //  vsys
 //
-//  Created by 薯条 on 17/12/24.
-//  Copyright © 2017年 薯条. All rights reserved.
+//  Created by 薯条 on 18/2/5.
+//  Copyright © 2018年 薯条. All rights reserved.
 //
 
-#ifndef __vsys_aec__
-#define __vsys_aec__
+#ifndef AEC_WRAP_H
+#define AEC_WRAP_H
 
 #include "r2ssp.h"
 
-namespace __vsys__ {
+namespace vsys {
 
 //class Aec{
 //public:
@@ -51,4 +51,4 @@ namespace __vsys__ {
     
 }
 
-#endif /* __vsys_aec__ */
+#endif /* AEC_WRAP_H */

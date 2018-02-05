@@ -24,7 +24,7 @@
 #include <semaphore.h>
 
 #include "vsys_activation.h"
-
+#include "audio_processing.h"
 #include "speex_preprocess.h"
 #include "speex_echo.h"
 
@@ -125,7 +125,6 @@ void test_aec(){
         
         std::mutex mutex;
         std::unique_lock<decltype(mutex)> locker(mutex, std::defer_lock);
-        
         while (loop) {
             sem_wait(resume_ref);
             
@@ -159,9 +158,9 @@ void test_aec(){
                 input[i * FRAME_SIZE_SPEEX + j] = ((short *)buff)[j * num_channels + i];
             }
         }
-        for (uint32_t i = CHANNEL_NUM; i < num_channels; i++) {
-            for (uint32_t j = 0; j < FRAME_SIZE_SPEEX; j++) {
-                input[i * SPEAKER_NUM +j] = input[i * FRAME_SIZE_SPEEX + j];
+        for (uint32_t i = FRAME_SIZE_SPEEX; i < num_channels; i++) {
+            for (uint32_t j = 0; j < CHANNEL_NUM; j++) {
+                input[i * SPEAKER_NUM +j] = input[j * FRAME_SIZE_SPEEX + i];
             }
         }
         for (uint32_t i = 0; i < CHANNEL_NUM; i++) {

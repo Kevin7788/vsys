@@ -376,6 +376,7 @@
 		5B39725B20280B0200B41305 /* fftw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fftw3.h; sourceTree = "<group>"; };
 		5B39725C20280B0200B41305 /* fftwrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fftwrapper.cpp; sourceTree = "<group>"; };
 		5B39725D20280B0200B41305 /* lockwrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lockwrapper.h; sourceTree = "<group>"; };
+		5B39729320283B5600B41305 /* libr2vt5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libr2vt5.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -414,16 +415,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5B39729020283B5600B41305 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		5B39706D202800CF00B41305 = {
 			isa = PBXGroup;
 			children = (
-				5B397078202800CF00B41305 /* vsys */,
+				5B397078202800CF00B41305 /* examples */,
 				5B397085202800E400B41305 /* activation */,
 				5B3970CA2028057100B41305 /* r2vt4 */,
 				5B3971B620280A8200B41305 /* speex */,
+				5B39729420283B5600B41305 /* r2vt5 */,
 				5B397077202800CF00B41305 /* Products */,
 				5B39719F2028061500B41305 /* Frameworks */,
 			);
@@ -436,16 +445,17 @@
 				5B397084202800E400B41305 /* libactivation.a */,
 				5B3970C92028057100B41305 /* libr2vt4.a */,
 				5B3971B520280A8200B41305 /* libspeex.a */,
+				5B39729320283B5600B41305 /* libr2vt5.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5B397078202800CF00B41305 /* vsys */ = {
+		5B397078202800CF00B41305 /* examples */ = {
 			isa = PBXGroup;
 			children = (
 				5B3970C3202801A400B41305 /* main.cpp */,
 			);
-			path = vsys;
+			path = examples;
 			sourceTree = "<group>";
 		};
 		5B397085202800E400B41305 /* activation */ = {
@@ -847,6 +857,13 @@
 			path = fft;
 			sourceTree = "<group>";
 		};
+		5B39729420283B5600B41305 /* r2vt5 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = r2vt5;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -967,6 +984,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5B39729120283B5600B41305 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -1038,6 +1062,23 @@
 			productReference = 5B3971B520280A8200B41305 /* libspeex.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		5B39729220283B5600B41305 /* r2vt5 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B39729B20283B5600B41305 /* Build configuration list for PBXNativeTarget "r2vt5" */;
+			buildPhases = (
+				5B39728F20283B5600B41305 /* Sources */,
+				5B39729020283B5600B41305 /* Frameworks */,
+				5B39729120283B5600B41305 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = r2vt5;
+			productName = r2vt5;
+			productReference = 5B39729320283B5600B41305 /* libr2vt5.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1063,6 +1104,10 @@
 						CreatedOnToolsVersion = 9.0.1;
 						ProvisioningStyle = Automatic;
 					};
+					5B39729220283B5600B41305 = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 5B397071202800CF00B41305 /* Build configuration list for PBXProject "vsys" */;
@@ -1081,6 +1126,7 @@
 				5B397083202800E400B41305 /* activation */,
 				5B3970C82028057100B41305 /* r2vt4 */,
 				5B3971B420280A8200B41305 /* speex */,
+				5B39729220283B5600B41305 /* r2vt5 */,
 			);
 		};
 /* End PBXProject section */
@@ -1183,6 +1229,13 @@
 				5B39724420280AC100B41305 /* Makefile in Sources */,
 				5B39724220280AC100B41305 /* kiss_fftr.c in Sources */,
 				5B39725420280AC100B41305 /* testjitter.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B39728F20283B5600B41305 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1378,6 +1431,28 @@
 			};
 			name = Release;
 		};
+		5B39729C20283B5600B41305 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5B39729D20283B5600B41305 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1422,6 +1497,15 @@
 			buildConfigurations = (
 				5B3971BE20280A8200B41305 /* Debug */,
 				5B3971BF20280A8200B41305 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5B39729B20283B5600B41305 /* Build configuration list for PBXNativeTarget "r2vt5" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B39729C20283B5600B41305 /* Debug */,
+				5B39729D20283B5600B41305 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

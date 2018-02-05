@@ -2,3 +2,5 @@
 android
 thirdlib
 **/data/workdir_*
+Makefile
+*.mk

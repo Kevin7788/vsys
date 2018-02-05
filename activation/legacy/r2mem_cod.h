@@ -1,9 +1,6 @@
 #ifndef R2_MEM_COD_H
 #define R2_MEM_COD_H
 
-#include "r2math.h"
-
-
 enum r2cod_type{
   r2ad_cod_opu = 1,
   r2ad_cod_pcm

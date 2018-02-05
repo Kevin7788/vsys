@@ -11,8 +11,6 @@
 		5B3970A5202800FC00B41305 /* audio_converter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B397090202800FA00B41305 /* audio_converter.cpp */; };
 		5B3970A6202800FC00B41305 /* event_hub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B397091202800FA00B41305 /* event_hub.cpp */; };
 		5B3970A7202800FC00B41305 /* vt_word_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B397092202800FB00B41305 /* vt_word_manager.cpp */; };
-		5B3970A8202800FC00B41305 /* r2math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B397094202800FB00B41305 /* r2math.cpp */; };
-		5B3970A9202800FC00B41305 /* r2math.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B397095202800FB00B41305 /* r2math.h */; };
 		5B3970AA202800FC00B41305 /* r2mem_cod.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B397096202800FB00B41305 /* r2mem_cod.cpp */; };
 		5B3970AB202800FC00B41305 /* r2mem_cod.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B397097202800FB00B41305 /* r2mem_cod.h */; };
 		5B3970AC202800FC00B41305 /* vt_word_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B397098202800FB00B41305 /* vt_word_manager.h */; };
@@ -205,8 +203,6 @@
 		5B397090202800FA00B41305 /* audio_converter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = audio_converter.cpp; sourceTree = "<group>"; };
 		5B397091202800FA00B41305 /* event_hub.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = event_hub.cpp; sourceTree = "<group>"; };
 		5B397092202800FB00B41305 /* vt_word_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vt_word_manager.cpp; sourceTree = "<group>"; };
-		5B397094202800FB00B41305 /* r2math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = r2math.cpp; sourceTree = "<group>"; };
-		5B397095202800FB00B41305 /* r2math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = r2math.h; sourceTree = "<group>"; };
 		5B397096202800FB00B41305 /* r2mem_cod.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = r2mem_cod.cpp; sourceTree = "<group>"; };
 		5B397097202800FB00B41305 /* r2mem_cod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = r2mem_cod.h; sourceTree = "<group>"; };
 		5B397098202800FB00B41305 /* vt_word_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vt_word_manager.h; sourceTree = "<group>"; };
@@ -508,8 +504,6 @@
 		5B397093202800FB00B41305 /* legacy */ = {
 			isa = PBXGroup;
 			children = (
-				5B397094202800FB00B41305 /* r2math.cpp */,
-				5B397095202800FB00B41305 /* r2math.h */,
 				5B397096202800FB00B41305 /* r2mem_cod.cpp */,
 				5B397097202800FB00B41305 /* r2mem_cod.h */,
 			);
@@ -907,7 +901,6 @@
 				5B3970B7202800FC00B41305 /* vsys_activation.h in Headers */,
 				5B3970B5202800FC00B41305 /* debug.h in Headers */,
 				5B3970B4202800FC00B41305 /* vsys_audio.h in Headers */,
-				5B3970A9202800FC00B41305 /* r2math.h in Headers */,
 				5B3970BA2028013400B41305 /* cpu_relax.h in Headers */,
 				5B3970A4202800FC00B41305 /* event_hub.h in Headers */,
 				5B3970C12028014400B41305 /* aec_wrap.h in Headers */,
@@ -1239,7 +1232,6 @@
 				5B3970C02028014400B41305 /* aec_wrap.cpp in Sources */,
 				5B3970A7202800FC00B41305 /* vt_word_manager.cpp in Sources */,
 				5B3970B6202800FC00B41305 /* voice_activation.cpp in Sources */,
-				5B3970A8202800FC00B41305 /* r2math.cpp in Sources */,
 				5B3970A6202800FC00B41305 /* event_hub.cpp in Sources */,
 				5B3970AA202800FC00B41305 /* r2mem_cod.cpp in Sources */,
 				5B3970A5202800FC00B41305 /* audio_converter.cpp in Sources */,

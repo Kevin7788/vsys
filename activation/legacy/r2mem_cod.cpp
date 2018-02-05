@@ -1,4 +1,31 @@
+
+#include <math.h>
+#include <string.h>
+#include <stdarg.h>
+#include <assert.h>
+
 #include "r2mem_cod.h"
+
+#define  R2_AUDIO_SAMPLE_RATE  16000
+#define  R2_AUDIO_FRAME_MS  10
+#define r2_min(a,b)    (((a) < (b)) ? (a) : (b))
+
+#define  R2_SAFE_NEW(p,type,...) new type(__VA_ARGS__)
+#define  R2_SAFE_NEW_AR1(p,type,dim1) (type*)r2_new_ar1(sizeof(type),dim1)
+#define  R2_SAFE_DEL(p)  do {if(p) { delete p ;p = NULL; } } while (0);
+#define  R2_SAFE_DEL_AR1(p)    do {if(p) { delete [] p; p = NULL; } } while (0);
+
+char* r2_new_ar1(int size,int dim1){
+    if (dim1 == 0) {
+        return nullptr ;
+    }
+    char * pData = new char[dim1*size];
+    if (pData == nullptr) {
+        return nullptr ;
+    }
+    memset(pData,0,size*dim1);
+    return pData ;
+}
 
 r2mem_cod::r2mem_cod(r2cod_type iCodeType){
   
@@ -187,7 +214,7 @@ int r2mem_cod::getdata(char* pData, int iLen){
   
   processdata() ;
   
-  int ll = r2_min(iLen, m_iLen_Out - m_iLen_Out_Cur);
+    int ll = r2_min(iLen, m_iLen_Out - m_iLen_Out_Cur);
   memcpy(pData, m_pData_Out + m_iLen_Out_Cur, ll) ;
   m_iLen_Out_Cur += ll ;
   
@@ -225,10 +252,3 @@ bool r2mem_cod::isneedresume(){
   }
 
 }
-
-
-
-
-
-
-

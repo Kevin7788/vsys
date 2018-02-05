@@ -132,6 +132,56 @@
 		5B3971AE2028075100B41305 /* libmkl_sequential.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3971A42028063500B41305 /* libmkl_sequential.a */; };
 		5B3971AF2028075100B41305 /* libr2ssp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3971A32028063400B41305 /* libr2ssp.a */; };
 		5B3971B02028075100B41305 /* libztvad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3971A12028063400B41305 /* libztvad.a */; };
+		5B39722A20280AC100B41305 /* speex_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3971F420280AC100B41305 /* speex_buffer.h */; };
+		5B39722B20280AC100B41305 /* speex_echo.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3971F520280AC100B41305 /* speex_echo.h */; };
+		5B39722C20280AC100B41305 /* speex_jitter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3971F620280AC100B41305 /* speex_jitter.h */; };
+		5B39722D20280AC100B41305 /* speex_preprocess.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3971F720280AC100B41305 /* speex_preprocess.h */; };
+		5B39722E20280AC100B41305 /* speex_resampler.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3971F820280AC100B41305 /* speex_resampler.h */; };
+		5B39722F20280AC100B41305 /* speexdsp_config_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3971F920280AC100B41305 /* speexdsp_config_types.h */; };
+		5B39723020280AC100B41305 /* speexdsp_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3971FA20280AC100B41305 /* speexdsp_types.h */; };
+		5B39723120280AC100B41305 /* _kiss_fft_guts.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3971FC20280AC100B41305 /* _kiss_fft_guts.h */; };
+		5B39723220280AC100B41305 /* arch.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3971FD20280AC100B41305 /* arch.h */; };
+		5B39723320280AC100B41305 /* bfin.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3971FE20280AC100B41305 /* bfin.h */; };
+		5B39723420280AC100B41305 /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B3971FF20280AC100B41305 /* buffer.c */; };
+		5B39723620280AC100B41305 /* fftwrap.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B39720120280AC100B41305 /* fftwrap.c */; };
+		5B39723720280AC100B41305 /* fftwrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39720220280AC100B41305 /* fftwrap.h */; };
+		5B39723820280AC100B41305 /* filterbank.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B39720320280AC100B41305 /* filterbank.c */; };
+		5B39723920280AC100B41305 /* filterbank.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39720420280AC100B41305 /* filterbank.h */; };
+		5B39723A20280AC100B41305 /* fixed_arm4.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39720520280AC100B41305 /* fixed_arm4.h */; };
+		5B39723B20280AC100B41305 /* fixed_arm5e.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39720620280AC100B41305 /* fixed_arm5e.h */; };
+		5B39723C20280AC100B41305 /* fixed_bfin.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39720720280AC100B41305 /* fixed_bfin.h */; };
+		5B39723D20280AC100B41305 /* fixed_debug.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39720820280AC100B41305 /* fixed_debug.h */; };
+		5B39723E20280AC100B41305 /* fixed_generic.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39720920280AC100B41305 /* fixed_generic.h */; };
+		5B39723F20280AC100B41305 /* jitter.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B39720A20280AC100B41305 /* jitter.c */; };
+		5B39724020280AC100B41305 /* kiss_fft.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B39720B20280AC100B41305 /* kiss_fft.c */; };
+		5B39724120280AC100B41305 /* kiss_fft.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39720C20280AC100B41305 /* kiss_fft.h */; };
+		5B39724220280AC100B41305 /* kiss_fftr.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B39720D20280AC100B41305 /* kiss_fftr.c */; };
+		5B39724320280AC100B41305 /* kiss_fftr.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39720E20280AC100B41305 /* kiss_fftr.h */; };
+		5B39724420280AC100B41305 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 5B39721220280AC100B41305 /* Makefile */; };
+		5B39724520280AC100B41305 /* math_approx.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39721520280AC100B41305 /* math_approx.h */; };
+		5B39724620280AC100B41305 /* mdf.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B39721620280AC100B41305 /* mdf.c */; };
+		5B39724720280AC100B41305 /* misc_bfin.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39721720280AC100B41305 /* misc_bfin.h */; };
+		5B39724820280AC100B41305 /* os_support.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39721820280AC100B41305 /* os_support.h */; };
+		5B39724920280AC100B41305 /* preprocess.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B39721920280AC100B41305 /* preprocess.c */; };
+		5B39724A20280AC100B41305 /* pseudofloat.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39721A20280AC100B41305 /* pseudofloat.h */; };
+		5B39724B20280AC100B41305 /* resample.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B39721B20280AC100B41305 /* resample.c */; };
+		5B39724C20280AC100B41305 /* resample_neon.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39721C20280AC100B41305 /* resample_neon.h */; };
+		5B39724D20280AC100B41305 /* resample_sse.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39721D20280AC100B41305 /* resample_sse.h */; };
+		5B39724E20280AC100B41305 /* scal.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B39721E20280AC100B41305 /* scal.c */; };
+		5B39724F20280AC100B41305 /* smallft.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B39721F20280AC100B41305 /* smallft.c */; };
+		5B39725020280AC100B41305 /* smallft.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39722020280AC100B41305 /* smallft.h */; };
+		5B39725120280AC100B41305 /* stack_alloc.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39722120280AC100B41305 /* stack_alloc.h */; };
+		5B39725220280AC100B41305 /* testdenoise.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B39722220280AC100B41305 /* testdenoise.c */; };
+		5B39725320280AC100B41305 /* testecho.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B39722320280AC100B41305 /* testecho.c */; };
+		5B39725420280AC100B41305 /* testjitter.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B39722420280AC100B41305 /* testjitter.c */; };
+		5B39725520280AC100B41305 /* testresample.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B39722520280AC100B41305 /* testresample.c */; };
+		5B39725620280AC100B41305 /* vorbis_psy.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39722620280AC100B41305 /* vorbis_psy.h */; };
+		5B39725720280AC100B41305 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39722820280AC100B41305 /* config.h */; };
+		5B39725820280AC100B41305 /* speexdsp_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39722920280AC100B41305 /* speexdsp_config.h */; };
+		5B39725E20280B0200B41305 /* fftwrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39725A20280B0200B41305 /* fftwrapper.h */; };
+		5B39725F20280B0200B41305 /* fftw3.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39725B20280B0200B41305 /* fftw3.h */; };
+		5B39726020280B0200B41305 /* fftwrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B39725C20280B0200B41305 /* fftwrapper.cpp */; };
+		5B39726120280B0200B41305 /* lockwrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39725D20280B0200B41305 /* lockwrapper.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -273,6 +323,59 @@
 		5B3971A32028063400B41305 /* libr2ssp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libr2ssp.a; path = ../../external/thirdlib/mac/lib/libr2ssp.a; sourceTree = "<group>"; };
 		5B3971A42028063500B41305 /* libmkl_sequential.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmkl_sequential.a; path = ../../external/thirdlib/mac/lib/libmkl_sequential.a; sourceTree = "<group>"; };
 		5B3971A52028063500B41305 /* libmkl_intel_lp64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmkl_intel_lp64.a; path = ../../external/thirdlib/mac/lib/libmkl_intel_lp64.a; sourceTree = "<group>"; };
+		5B3971B520280A8200B41305 /* libspeex.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libspeex.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B3971F420280AC100B41305 /* speex_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = speex_buffer.h; sourceTree = "<group>"; };
+		5B3971F520280AC100B41305 /* speex_echo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = speex_echo.h; sourceTree = "<group>"; };
+		5B3971F620280AC100B41305 /* speex_jitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = speex_jitter.h; sourceTree = "<group>"; };
+		5B3971F720280AC100B41305 /* speex_preprocess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = speex_preprocess.h; sourceTree = "<group>"; };
+		5B3971F820280AC100B41305 /* speex_resampler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = speex_resampler.h; sourceTree = "<group>"; };
+		5B3971F920280AC100B41305 /* speexdsp_config_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = speexdsp_config_types.h; sourceTree = "<group>"; };
+		5B3971FA20280AC100B41305 /* speexdsp_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = speexdsp_types.h; sourceTree = "<group>"; };
+		5B3971FC20280AC100B41305 /* _kiss_fft_guts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _kiss_fft_guts.h; sourceTree = "<group>"; };
+		5B3971FD20280AC100B41305 /* arch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arch.h; sourceTree = "<group>"; };
+		5B3971FE20280AC100B41305 /* bfin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bfin.h; sourceTree = "<group>"; };
+		5B3971FF20280AC100B41305 /* buffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = buffer.c; sourceTree = "<group>"; };
+		5B39720120280AC100B41305 /* fftwrap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fftwrap.c; sourceTree = "<group>"; };
+		5B39720220280AC100B41305 /* fftwrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fftwrap.h; sourceTree = "<group>"; };
+		5B39720320280AC100B41305 /* filterbank.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = filterbank.c; sourceTree = "<group>"; };
+		5B39720420280AC100B41305 /* filterbank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filterbank.h; sourceTree = "<group>"; };
+		5B39720520280AC100B41305 /* fixed_arm4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fixed_arm4.h; sourceTree = "<group>"; };
+		5B39720620280AC100B41305 /* fixed_arm5e.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fixed_arm5e.h; sourceTree = "<group>"; };
+		5B39720720280AC100B41305 /* fixed_bfin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fixed_bfin.h; sourceTree = "<group>"; };
+		5B39720820280AC100B41305 /* fixed_debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fixed_debug.h; sourceTree = "<group>"; };
+		5B39720920280AC100B41305 /* fixed_generic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fixed_generic.h; sourceTree = "<group>"; };
+		5B39720A20280AC100B41305 /* jitter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jitter.c; sourceTree = "<group>"; };
+		5B39720B20280AC100B41305 /* kiss_fft.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kiss_fft.c; sourceTree = "<group>"; };
+		5B39720C20280AC100B41305 /* kiss_fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kiss_fft.h; sourceTree = "<group>"; };
+		5B39720D20280AC100B41305 /* kiss_fftr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kiss_fftr.c; sourceTree = "<group>"; };
+		5B39720E20280AC100B41305 /* kiss_fftr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kiss_fftr.h; sourceTree = "<group>"; };
+		5B39721220280AC100B41305 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		5B39721320280AC100B41305 /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		5B39721420280AC100B41305 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		5B39721520280AC100B41305 /* math_approx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_approx.h; sourceTree = "<group>"; };
+		5B39721620280AC100B41305 /* mdf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mdf.c; sourceTree = "<group>"; };
+		5B39721720280AC100B41305 /* misc_bfin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = misc_bfin.h; sourceTree = "<group>"; };
+		5B39721820280AC100B41305 /* os_support.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = os_support.h; sourceTree = "<group>"; };
+		5B39721920280AC100B41305 /* preprocess.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = preprocess.c; sourceTree = "<group>"; };
+		5B39721A20280AC100B41305 /* pseudofloat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pseudofloat.h; sourceTree = "<group>"; };
+		5B39721B20280AC100B41305 /* resample.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = resample.c; sourceTree = "<group>"; };
+		5B39721C20280AC100B41305 /* resample_neon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resample_neon.h; sourceTree = "<group>"; };
+		5B39721D20280AC100B41305 /* resample_sse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resample_sse.h; sourceTree = "<group>"; };
+		5B39721E20280AC100B41305 /* scal.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scal.c; sourceTree = "<group>"; };
+		5B39721F20280AC100B41305 /* smallft.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = smallft.c; sourceTree = "<group>"; };
+		5B39722020280AC100B41305 /* smallft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = smallft.h; sourceTree = "<group>"; };
+		5B39722120280AC100B41305 /* stack_alloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stack_alloc.h; sourceTree = "<group>"; };
+		5B39722220280AC100B41305 /* testdenoise.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = testdenoise.c; sourceTree = "<group>"; };
+		5B39722320280AC100B41305 /* testecho.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = testecho.c; sourceTree = "<group>"; };
+		5B39722420280AC100B41305 /* testjitter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = testjitter.c; sourceTree = "<group>"; };
+		5B39722520280AC100B41305 /* testresample.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = testresample.c; sourceTree = "<group>"; };
+		5B39722620280AC100B41305 /* vorbis_psy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vorbis_psy.h; sourceTree = "<group>"; };
+		5B39722820280AC100B41305 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		5B39722920280AC100B41305 /* speexdsp_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = speexdsp_config.h; sourceTree = "<group>"; };
+		5B39725A20280B0200B41305 /* fftwrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fftwrapper.h; sourceTree = "<group>"; };
+		5B39725B20280B0200B41305 /* fftw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fftw3.h; sourceTree = "<group>"; };
+		5B39725C20280B0200B41305 /* fftwrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fftwrapper.cpp; sourceTree = "<group>"; };
+		5B39725D20280B0200B41305 /* lockwrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lockwrapper.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,6 +407,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5B3971B220280A8200B41305 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -313,6 +423,7 @@
 				5B397078202800CF00B41305 /* vsys */,
 				5B397085202800E400B41305 /* activation */,
 				5B3970CA2028057100B41305 /* r2vt4 */,
+				5B3971B620280A8200B41305 /* speex */,
 				5B397077202800CF00B41305 /* Products */,
 				5B39719F2028061500B41305 /* Frameworks */,
 			);
@@ -324,6 +435,7 @@
 				5B397076202800CF00B41305 /* vsys */,
 				5B397084202800E400B41305 /* libactivation.a */,
 				5B3970C92028057100B41305 /* libr2vt4.a */,
+				5B3971B520280A8200B41305 /* libspeex.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -644,6 +756,97 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5B3971B620280A8200B41305 /* speex */ = {
+			isa = PBXGroup;
+			children = (
+				5B39725920280AEB00B41305 /* fft */,
+				5B39722820280AC100B41305 /* config.h */,
+				5B3971F220280AC100B41305 /* include */,
+				5B3971FB20280AC100B41305 /* libspeexdsp */,
+				5B39722920280AC100B41305 /* speexdsp_config.h */,
+			);
+			path = speex;
+			sourceTree = "<group>";
+		};
+		5B3971F220280AC100B41305 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				5B3971F320280AC100B41305 /* speex */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		5B3971F320280AC100B41305 /* speex */ = {
+			isa = PBXGroup;
+			children = (
+				5B3971F420280AC100B41305 /* speex_buffer.h */,
+				5B3971F520280AC100B41305 /* speex_echo.h */,
+				5B3971F620280AC100B41305 /* speex_jitter.h */,
+				5B3971F720280AC100B41305 /* speex_preprocess.h */,
+				5B3971F820280AC100B41305 /* speex_resampler.h */,
+				5B3971F920280AC100B41305 /* speexdsp_config_types.h */,
+				5B3971FA20280AC100B41305 /* speexdsp_types.h */,
+			);
+			path = speex;
+			sourceTree = "<group>";
+		};
+		5B3971FB20280AC100B41305 /* libspeexdsp */ = {
+			isa = PBXGroup;
+			children = (
+				5B3971FC20280AC100B41305 /* _kiss_fft_guts.h */,
+				5B3971FD20280AC100B41305 /* arch.h */,
+				5B3971FE20280AC100B41305 /* bfin.h */,
+				5B3971FF20280AC100B41305 /* buffer.c */,
+				5B39720120280AC100B41305 /* fftwrap.c */,
+				5B39720220280AC100B41305 /* fftwrap.h */,
+				5B39720320280AC100B41305 /* filterbank.c */,
+				5B39720420280AC100B41305 /* filterbank.h */,
+				5B39720520280AC100B41305 /* fixed_arm4.h */,
+				5B39720620280AC100B41305 /* fixed_arm5e.h */,
+				5B39720720280AC100B41305 /* fixed_bfin.h */,
+				5B39720820280AC100B41305 /* fixed_debug.h */,
+				5B39720920280AC100B41305 /* fixed_generic.h */,
+				5B39720A20280AC100B41305 /* jitter.c */,
+				5B39720B20280AC100B41305 /* kiss_fft.c */,
+				5B39720C20280AC100B41305 /* kiss_fft.h */,
+				5B39720D20280AC100B41305 /* kiss_fftr.c */,
+				5B39720E20280AC100B41305 /* kiss_fftr.h */,
+				5B39721220280AC100B41305 /* Makefile */,
+				5B39721320280AC100B41305 /* Makefile.am */,
+				5B39721420280AC100B41305 /* Makefile.in */,
+				5B39721520280AC100B41305 /* math_approx.h */,
+				5B39721620280AC100B41305 /* mdf.c */,
+				5B39721720280AC100B41305 /* misc_bfin.h */,
+				5B39721820280AC100B41305 /* os_support.h */,
+				5B39721920280AC100B41305 /* preprocess.c */,
+				5B39721A20280AC100B41305 /* pseudofloat.h */,
+				5B39721B20280AC100B41305 /* resample.c */,
+				5B39721C20280AC100B41305 /* resample_neon.h */,
+				5B39721D20280AC100B41305 /* resample_sse.h */,
+				5B39721E20280AC100B41305 /* scal.c */,
+				5B39721F20280AC100B41305 /* smallft.c */,
+				5B39722020280AC100B41305 /* smallft.h */,
+				5B39722120280AC100B41305 /* stack_alloc.h */,
+				5B39722220280AC100B41305 /* testdenoise.c */,
+				5B39722320280AC100B41305 /* testecho.c */,
+				5B39722420280AC100B41305 /* testjitter.c */,
+				5B39722520280AC100B41305 /* testresample.c */,
+				5B39722620280AC100B41305 /* vorbis_psy.h */,
+			);
+			path = libspeexdsp;
+			sourceTree = "<group>";
+		};
+		5B39725920280AEB00B41305 /* fft */ = {
+			isa = PBXGroup;
+			children = (
+				5B39725B20280B0200B41305 /* fftw3.h */,
+				5B39725C20280B0200B41305 /* fftwrapper.cpp */,
+				5B39725A20280B0200B41305 /* fftwrapper.h */,
+				5B39725D20280B0200B41305 /* lockwrapper.h */,
+			);
+			path = fft;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -724,6 +927,46 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5B3971B320280A8200B41305 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B39723A20280AC100B41305 /* fixed_arm4.h in Headers */,
+				5B39725720280AC100B41305 /* config.h in Headers */,
+				5B39723120280AC100B41305 /* _kiss_fft_guts.h in Headers */,
+				5B39724820280AC100B41305 /* os_support.h in Headers */,
+				5B39723B20280AC100B41305 /* fixed_arm5e.h in Headers */,
+				5B39724120280AC100B41305 /* kiss_fft.h in Headers */,
+				5B39725820280AC100B41305 /* speexdsp_config.h in Headers */,
+				5B39725F20280B0200B41305 /* fftw3.h in Headers */,
+				5B39724320280AC100B41305 /* kiss_fftr.h in Headers */,
+				5B39725020280AC100B41305 /* smallft.h in Headers */,
+				5B39723020280AC100B41305 /* speexdsp_types.h in Headers */,
+				5B39724520280AC100B41305 /* math_approx.h in Headers */,
+				5B39723E20280AC100B41305 /* fixed_generic.h in Headers */,
+				5B39722F20280AC100B41305 /* speexdsp_config_types.h in Headers */,
+				5B39723C20280AC100B41305 /* fixed_bfin.h in Headers */,
+				5B39722A20280AC100B41305 /* speex_buffer.h in Headers */,
+				5B39723920280AC100B41305 /* filterbank.h in Headers */,
+				5B39723220280AC100B41305 /* arch.h in Headers */,
+				5B39723D20280AC100B41305 /* fixed_debug.h in Headers */,
+				5B39723320280AC100B41305 /* bfin.h in Headers */,
+				5B39725E20280B0200B41305 /* fftwrapper.h in Headers */,
+				5B39722C20280AC100B41305 /* speex_jitter.h in Headers */,
+				5B39725620280AC100B41305 /* vorbis_psy.h in Headers */,
+				5B39724D20280AC100B41305 /* resample_sse.h in Headers */,
+				5B39722E20280AC100B41305 /* speex_resampler.h in Headers */,
+				5B39723720280AC100B41305 /* fftwrap.h in Headers */,
+				5B39724A20280AC100B41305 /* pseudofloat.h in Headers */,
+				5B39722D20280AC100B41305 /* speex_preprocess.h in Headers */,
+				5B39724C20280AC100B41305 /* resample_neon.h in Headers */,
+				5B39722B20280AC100B41305 /* speex_echo.h in Headers */,
+				5B39724720280AC100B41305 /* misc_bfin.h in Headers */,
+				5B39726120280B0200B41305 /* lockwrapper.h in Headers */,
+				5B39725120280AC100B41305 /* stack_alloc.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -778,6 +1021,23 @@
 			productReference = 5B3970C92028057100B41305 /* libr2vt4.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		5B3971B420280A8200B41305 /* speex */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B3971BD20280A8200B41305 /* Build configuration list for PBXNativeTarget "speex" */;
+			buildPhases = (
+				5B3971B120280A8200B41305 /* Sources */,
+				5B3971B220280A8200B41305 /* Frameworks */,
+				5B3971B320280A8200B41305 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = speex;
+			productName = speex;
+			productReference = 5B3971B520280A8200B41305 /* libspeex.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -799,6 +1059,10 @@
 						CreatedOnToolsVersion = 9.0.1;
 						ProvisioningStyle = Automatic;
 					};
+					5B3971B420280A8200B41305 = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 5B397071202800CF00B41305 /* Build configuration list for PBXProject "vsys" */;
@@ -816,6 +1080,7 @@
 				5B397075202800CF00B41305 /* vsys */,
 				5B397083202800E400B41305 /* activation */,
 				5B3970C82028057100B41305 /* r2vt4 */,
+				5B3971B420280A8200B41305 /* speex */,
 			);
 		};
 /* End PBXProject section */
@@ -894,6 +1159,30 @@
 				5B3971842028060100B41305 /* zoutput.cpp in Sources */,
 				5B3971432028060100B41305 /* zcomp_activation.cpp in Sources */,
 				5B3971822028060100B41305 /* zinput.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B3971B120280A8200B41305 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B39725520280AC100B41305 /* testresample.c in Sources */,
+				5B39723620280AC100B41305 /* fftwrap.c in Sources */,
+				5B39724B20280AC100B41305 /* resample.c in Sources */,
+				5B39724F20280AC100B41305 /* smallft.c in Sources */,
+				5B39726020280B0200B41305 /* fftwrapper.cpp in Sources */,
+				5B39725320280AC100B41305 /* testecho.c in Sources */,
+				5B39723420280AC100B41305 /* buffer.c in Sources */,
+				5B39724020280AC100B41305 /* kiss_fft.c in Sources */,
+				5B39724620280AC100B41305 /* mdf.c in Sources */,
+				5B39724E20280AC100B41305 /* scal.c in Sources */,
+				5B39724920280AC100B41305 /* preprocess.c in Sources */,
+				5B39723F20280AC100B41305 /* jitter.c in Sources */,
+				5B39723820280AC100B41305 /* filterbank.c in Sources */,
+				5B39725220280AC100B41305 /* testdenoise.c in Sources */,
+				5B39724420280AC100B41305 /* Makefile in Sources */,
+				5B39724220280AC100B41305 /* kiss_fftr.c in Sources */,
+				5B39725420280AC100B41305 /* testjitter.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1067,6 +1356,28 @@
 			};
 			name = Release;
 		};
+		5B3971BE20280A8200B41305 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5B3971BF20280A8200B41305 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1102,6 +1413,15 @@
 			buildConfigurations = (
 				5B3970D22028057100B41305 /* Debug */,
 				5B3970D32028057100B41305 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5B3971BD20280A8200B41305 /* Build configuration list for PBXNativeTarget "speex" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B3971BE20280A8200B41305 /* Debug */,
+				5B3971BF20280A8200B41305 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

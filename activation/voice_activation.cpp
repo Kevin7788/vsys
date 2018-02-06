@@ -60,7 +60,7 @@ VoiceActivation::~VoiceActivation(){
 }
     
 int32_t VoiceActivation::init(const activation_param_t* param, const char* path, bool vad_enable){
-    assert(param || param->num_channels);
+    assert(param);
     
     if(!audio_is_valid_sample_rate(param->sample_rate)){
         VSYS_DEBUGE("Invalid sample rate %d", param->sample_rate);

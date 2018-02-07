@@ -9,5 +9,7 @@
 #ifndef AUDIO_PROCESSING_H
 #define AUDIO_PROCESSING_H
 
+#include "buffer.h"
+
 
 #endif /* AUDIO_PROCESSING_H */

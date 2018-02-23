@@ -380,6 +380,7 @@
 		5B39729320283B5600B41305 /* libr2vt5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libr2vt5.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3972A220287A7E00B41305 /* libaudio_processing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libaudio_processing.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3972B1202AC5BC00B41305 /* buffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = buffer.h; sourceTree = "<group>"; };
+		5B6D5308204001AB00673A73 /* thread_poll.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = thread_poll.h; sourceTree = "<group>"; };
 		5B8F86CE2028968B004A883C /* libcommon_audio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcommon_audio.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B8F86DA202896C4004A883C /* audio_processing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = audio_processing.h; sourceTree = "<group>"; };
 		5B8F86DB202896D2004A883C /* audio_processing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = audio_processing.cpp; sourceTree = "<group>"; };
@@ -891,6 +892,7 @@
 		5B8F86D9202896A5004A883C /* audio_processing */ = {
 			isa = PBXGroup;
 			children = (
+				5B6D5308204001AB00673A73 /* thread_poll.h */,
 				5B8F86DE2028B50C004A883C /* audio_converter.cpp */,
 				5B8F86DF2028B50C004A883C /* audio_converter.h */,
 				5B8F86E02028B50C004A883C /* buf_manager.h */,

@@ -83,7 +83,7 @@ private:
     
     void set_vad_frame_num(int32_t frame_num);
     
-    void send_message(uint32_t event);
+    void send_event(uint32_t event);
     
     void get_vt_info(char*& vt_word, uint32_t& vt_begin, uint32_t& vt_end, float& vt_energy, uint32_t& vt_length);
     

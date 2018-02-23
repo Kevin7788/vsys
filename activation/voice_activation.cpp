@@ -85,7 +85,7 @@ int32_t VoiceActivation::init(const activation_param_t* param, const char* path,
     if(!nnet_stream){
         memset(nnet_path, 0, sizeof(nnet_path));
         snprintf(nnet_path, sizeof(nnet_path), "%s/workdir_cn/final.svd.mod", path);
-        nnet_stream.open(nnet_path);
+        nnet_stream.open(nnet_path, std::ios::in | std::ios::binary);
         if(!nnet_stream){
             VSYS_DEBUGE("%s not exist or permission denied", nnet_path);
             return -1;
@@ -198,20 +198,8 @@ int32_t VoiceActivation::enter_vbv(){
     pWordLst[0].bLocalClassifyCheck = false ;
     pWordLst[0].fClassifyShield = -0.3f ;
     strcpy(pWordLst[0].pLocalClassifyNnetPath, nnet_path_ruoqi);
-
-    pWordLst[1].iWordType = WORD_AWAKE ;
-    strcpy(pWordLst[1].pWordContent_UTF8, "你好小微");
-    strcpy(pWordLst[1].pWordContent_PHONE, "n|n_B|# i3|i3_E|## h|h_B|# a3 W|W_E|## x|x_B|# y a3 W|W_E|## w|w_B|# E1 Y|Y_E|##");
-    pWordLst[1].fBlockAvgScore = 3.7 ;
-    pWordLst[1].fBlockMinScore = 2.2 ;
-    pWordLst[1].bLeftSilDet = true ;
-    pWordLst[1].bRightSilDet = false ;
-    pWordLst[1].bRemoteAsrCheckWithAec = true ;
-    pWordLst[1].bRemoteAsrCheckWithNoAec = true ;
-    pWordLst[1].bLocalClassifyCheck = false ;
-    pWordLst[1].fClassifyShield = -0.3f ;
     
-    set_vt_word(pWordLst, 2);
+    set_vt_word(pWordLst, 1);
 
     if(!(vad_handle = VD_NewVad(1))){
         VSYS_DEBUGE("Failed to create vad inst");
@@ -323,7 +311,7 @@ void VoiceActivation::reset_asr(){
     bf_reset();
     __cod->reset();
 
-    if(data_output && !canceled) send_message(VOICE_EVENT_VAD_CANCEL);
+    if(data_output && !canceled) send_event(VOICE_EVENT_VAD_CANCEL);
     if(vad_enable) data_output = false;
 }
     
@@ -376,20 +364,20 @@ int32_t VoiceActivation::processfrm(const float** input, const size_t& input_siz
         
         if(awake){
             awaked = true;
-            send_message(VOICE_EVENT_VAD_COMING);
-            send_message(VOICE_EVENT_VT_INFO);
+            send_event(VOICE_EVENT_VAD_COMING);
+            send_event(VOICE_EVENT_VT_INFO);
         }
     }
     if(nocmd){
-        if(sleep_nocmd) send_message(VOICE_EVENT_LOCAL_SLEEP);
-        if(awake_nocmd) send_message(VOICE_EVENT_WAKE_NOCMD);
-        if(hotword_nocmd) send_message(VOICE_EVENT_HOTWORD);
+        if(sleep_nocmd) send_event(VOICE_EVENT_LOCAL_SLEEP);
+        if(awake_nocmd) send_event(VOICE_EVENT_WAKE_NOCMD);
+        if(hotword_nocmd) send_event(VOICE_EVENT_HOTWORD);
     
         if(!sleep_nocmd) set_vad_frame_num(vad_enable ? -1 : 2000);
     }
     if(cmd){
         set_vad_frame_num(vad_enable ? -1 : 2000);
-        if(awake_cmd) send_message(VOICE_EVENT_LOCAL_WAKE);
+        if(awake_cmd) send_event(VOICE_EVENT_LOCAL_WAKE);
     }
     if(VAD_ON(vad_flag)){
         __cod->process(data, data_len);
@@ -398,7 +386,7 @@ int32_t VoiceActivation::processfrm(const float** input, const size_t& input_siz
                 data_output = true;
                 if(cmd){
                     VSYS_DEBUGD("Vad start with wake pre");
-                    send_message(VOICE_EVENT_VAD_START);
+                    send_event(VOICE_EVENT_VAD_START);
                 }else{
                     canceled = true;
                     __cod->pause();
@@ -408,7 +396,7 @@ int32_t VoiceActivation::processfrm(const float** input, const size_t& input_siz
                 if(!vad_enable) set_vad_frame_num(2000);
                 
                  VSYS_DEBUGD("Vad start with !awaked");
-                send_message(VOICE_EVENT_VAD_START);
+                send_event(VOICE_EVENT_VAD_START);
             }
         }
         if(data_output){
@@ -428,28 +416,28 @@ int32_t VoiceActivation::processfrm(const float** input, const size_t& input_siz
                         set_vad_frame_num(-1);
                     }
                     __cod->pause();
-                    send_message(VOICE_EVENT_VAD_CANCEL);
+                    send_event(VOICE_EVENT_VAD_CANCEL);
                 }
             }
             if(vad_enable && canceled && awaked){
                 if(__cod->isneedresume()){
                     canceled = false;
                     __cod->resume();
-                    send_message(VOICE_EVENT_VAD_START);
+                    send_event(VOICE_EVENT_VAD_START);
                 }
             }
             if(!canceled){
                 if(!awake_pre && __cod->getdatalen() > 100)
-                    send_message(VOICE_EVENT_VAD_DATA);
+                    send_event(VOICE_EVENT_VAD_DATA);
                 if(VAD_OFF(vad_result) && __cod->getdatalen() > 0)
-                    send_message(VOICE_EVENT_VAD_DATA);
+                    send_event(VOICE_EVENT_VAD_DATA);
             }
         }
     }
     if(VAD_OFF(vad_result)){
         VSYS_DEBUGI("VAD OFF");
         if(vad_enable && data_output && !canceled){
-            send_message(VOICE_EVENT_VAD_END);
+            send_event(VOICE_EVENT_VAD_END);
         }
         canceled = false;
         if(awaked){
@@ -606,7 +594,7 @@ int32_t VoiceActivation::do_activation(const float** input, const uint32_t& len_
     return vbv_result;
 }
     
-void VoiceActivation::send_message(uint32_t event){
+void VoiceActivation::send_event(uint32_t event){
     char* data = nullptr;
     uint32_t length = 0, vt_begin = 0, vt_end = 0;
     float sl = 0.0f, vt_energy = 0.0f;

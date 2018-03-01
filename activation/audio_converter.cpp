@@ -26,17 +26,28 @@ int32_t AudioConverter::convert(void *input, uint32_t input_size, float **&outpu
             }
             break;
         }
-//        case AUDIO_FORMAT_PCM_32_BIT:{
-//            float *data = (float *)input;
-//            samples = input_size / (num_channels * sizeof(float));
-//            check_buff(samples);
-//            for(uint32_t i = 0; i < num_channels; i++){
-//                for (uint32_t j = 0; j< samples; j++) {
-//                    buff[i][j] = data[mic_ids[i] + j * num_channels] / 1024.0f;
-//                }
-//            }
-//            break;
-//        }
+        case AUDIO_FORMAT_PCM_24_BIT:{
+            int24_t *data = (int24_t *)input;
+            samples = input_size / (num_channels * sizeof(int24_t));
+            check_buffer(samples);
+            for(uint32_t i = 0; i < num_channels; i++){
+                for (uint32_t j = 0; j< samples; j++) {
+                    buff[i][j] = data[mic_ids[i] + j * num_channels].toint() / 4.0f;
+                }
+            }
+            break;
+        }
+        case AUDIO_FORMAT_PCM_32_BIT:{
+            float *data = (float *)input;
+            samples = input_size / (num_channels * sizeof(float));
+            check_buffer(samples);
+            for(uint32_t i = 0; i < num_channels; i++){
+                for (uint32_t j = 0; j< samples; j++) {
+                    buff[i][j] = data[mic_ids[i] + j * num_channels] / 1024.0f;
+                }
+            }
+            break;
+        }
         case AUDIO_FORMAT_PCM_32F_BIT:{
             float *data = (float *)input;
             samples = input_size / (num_channels * sizeof(float));

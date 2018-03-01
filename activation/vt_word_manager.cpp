@@ -6,6 +6,8 @@
 //  Copyright © 2018年 薯条. All rights reserved.
 //
 
+#include <cctype>
+
 #include "debug.h"
 #include "vt_word_manager.h"
 
@@ -72,42 +74,31 @@ bool VtWordManager::is_exist(const std::string& word){
 bool VtWordManager::vt_word_formation(const word_type type, const std::string& word, const std::string& pinyin, WordInfo& word_info){
     std::string vt_word = word;
     std::string vt_phone;
-    uint32_t word_size = 0;
-    float vt_block_avg_score = 4.2;
-    float vt_block_min_score = 2.7;
+    uint32_t word_size;
+    float block_avg_score = 4.2;
+    float block_min_score = 2.7;
     
-    if(model == AcousticModel::MODEL_CTC){
-        vt_phone = pinyin;
-        for (uint32_t i = 0; i < pinyin.length(); i++) {
-            if(vt_phone[i] >= 48 && vt_phone[i] <= 53){
-                word_size++;
-                vt_phone[i] = 32;
-            }
-        }
-    }else if(model == AcousticModel::MODEL_DNN){
-        if(!pinyin_to_phoneme(pinyin, vt_phone)){
-            VSYS_DEBUGE("vt pinyin", pinyin.c_str());
-            return false;
-        }
-    }
-    int32_t ecx = (word_size + 1) / 2 - 1;
-    if(ecx > 0 && ecx < 3) {
-        for(int i = 0; i < ecx; i++) {
-            vt_block_avg_score -= 0.5f;
-            vt_block_min_score -= 0.5f;
+    word_size = get_word_size(pinyin);
+    int32_t iter = (word_size + 1) / 2 - 1;
+    if(iter > 0 && iter < 3) {
+        for(int i = 0; i < iter; i++) {
+            block_avg_score -= 0.5f;
+            block_min_score -= 0.5f;
         }
     }else{
-        VSYS_DEBUGE("vt word is too long");
         return false;
     }
-    if(vt_block_avg_score < 3.2f) vt_block_avg_score = 3.2f;
-    if(vt_block_min_score < 1.7f) vt_block_min_score = 1.7f;
+    if(block_avg_score < 3.2f) block_avg_score = 3.2f;
+    if(block_min_score < 1.7f) block_min_score = 1.7f;
     
+    if(!pinyin2phoneme(pinyin, vt_phone)){
+        return false;
+    }
     word_info.iWordType = get_vt_type(type);
     strcpy(word_info.pWordContent_UTF8, word.c_str());
     strcpy(word_info.pWordContent_PHONE, vt_phone.c_str());
-    word_info.fBlockAvgScore = vt_block_avg_score;
-    word_info.fBlockMinScore = vt_block_min_score;
+    word_info.fBlockAvgScore = block_avg_score;
+    word_info.fBlockMinScore = block_min_score;
     word_info.bLeftSilDet = true;
     word_info.bRightSilDet = false;
     word_info.bRemoteAsrCheckWithAec = true;
@@ -116,7 +107,60 @@ bool VtWordManager::vt_word_formation(const word_type type, const std::string& w
     word_info.fClassifyShield = -0.3;
     return true;
 }
+
+bool VtWordManager::pinyin2phoneme(const std::string &pinyin, std::string &phone){
+    std::string result;
+    if(vt_model == AcousticModel::MODEL_DNN){
+        uint32_t left = 0, right = 0;
+        std::string target;
+        bool is_first = true;
+        
+        uint32_t length = pinyin.length();
+        while (right < length) {
+            if(!std::isalnum(pinyin[right])){
+                VSYS_DEBUGE("contains bad pinyin : %s", pinyin.c_str());
+                return false;
+            }
+            if (std::isdigit(pinyin[right])){
+                target.assign(pinyin, left, right - left);
+                std::string phone = phoneme->find_phoneme(target);
+                if(result.empty()){
+                    VSYS_DEBUGE("cannot find phoneme for %s", target.c_str());
+                    return false;
+                }
+                if(!is_first){
+                    result.append(" ");
+                }
+                result.append(phone);
+                is_first = false;
+                left = right + 1;
+            }
+            right++;
+        }
+    }else if(vt_model == AcousticModel::MODEL_CTC){
+        result = pinyin;
+        for (uint32_t i = 0; i < pinyin.length(); i++) {
+            if(std::isdigit(result[i])){
+                result[i] = 32;
+            }
+        }
+    }else{
+        VSYS_DEBUGE("unknown model");
+    }
+    phone.assign(result);
+    return true;
+}
     
+uint32_t VtWordManager::get_word_size(const std::string& pinyin){
+    uint32_t word_size = 0;
+    for (uint32_t i = 0; i < pinyin.length(); i++) {
+        if(pinyin[i] >= 48 && pinyin[i] <= 53){
+            word_size++;
+        }
+    }
+    return word_size;
+}
+
 WordType VtWordManager::get_vt_type(word_type type){
     switch (type) {
         case VSYS_WORD_AWAKE:
@@ -126,10 +170,6 @@ WordType VtWordManager::get_vt_type(word_type type){
         case VSYS_WORD_HOTWORD:
             return WORD_HOTWORD;
     }
-}
-
-bool VtWordManager::pinyin_to_phoneme(const std::string &pinyin, std::string &phone){
-    return false;
 }
     
 bool VtWordManager::get_all_vt_words(){

@@ -15,6 +15,17 @@
 
 namespace vsys {
     
+struct int24_t {
+    unsigned char cont[3] ;
+    int toint(){
+        if ((cont[2] & 0x80) != 0){
+            return  ((cont[0] & 0xff) | (cont[1] & 0xff) << 8 | (cont[2] & 0xff) << 16 | (-1 & 0xff) << 24);
+        }else{
+            return  ((cont[0] & 0xff) | (cont[1] & 0xff) << 8 | (cont[2] & 0xff) << 16 | (0 & 0xff) << 24);
+        }
+    }
+};
+    
 class AudioConverter{
 public:
     AudioConverter(uint32_t format, uint32_t num_channels, uint32_t* mic_ids)

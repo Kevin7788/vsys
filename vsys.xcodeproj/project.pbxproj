@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B335A6420479D46000418AC /* phoneme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B335A6320479D46000418AC /* phoneme.cpp */; };
 		5B3970A4202800FC00B41305 /* event_hub.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39708F202800FA00B41305 /* event_hub.h */; };
 		5B3970A5202800FC00B41305 /* audio_converter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B397090202800FA00B41305 /* audio_converter.cpp */; };
 		5B3970A6202800FC00B41305 /* event_hub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B397091202800FA00B41305 /* event_hub.cpp */; };
@@ -15,7 +16,7 @@
 		5B3970AB202800FC00B41305 /* r2mem_cod.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B397097202800FB00B41305 /* r2mem_cod.h */; };
 		5B3970AC202800FC00B41305 /* vt_word_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B397098202800FB00B41305 /* vt_word_manager.h */; };
 		5B3970AD202800FC00B41305 /* vsys_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B397099202800FB00B41305 /* vsys_types.h */; };
-		5B3970AE202800FC00B41305 /* vt_phoneme.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39709A202800FB00B41305 /* vt_phoneme.h */; };
+		5B3970AE202800FC00B41305 /* phones.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39709A202800FB00B41305 /* phones.h */; };
 		5B3970AF202800FC00B41305 /* vsys_activation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B39709B202800FB00B41305 /* vsys_activation.cpp */; };
 		5B3970B0202800FC00B41305 /* voice_activation.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39709C202800FB00B41305 /* voice_activation.h */; };
 		5B3970B1202800FC00B41305 /* buf_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39709D202800FB00B41305 /* buf_manager.h */; };
@@ -200,6 +201,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5B335A6220479D30000418AC /* phoneme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = phoneme.h; sourceTree = "<group>"; };
+		5B335A6320479D46000418AC /* phoneme.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = phoneme.cpp; sourceTree = "<group>"; };
 		5B397076202800CF00B41305 /* vsys */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = vsys; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B397084202800E400B41305 /* libactivation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libactivation.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B39708F202800FA00B41305 /* event_hub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = event_hub.h; sourceTree = "<group>"; };
@@ -210,7 +213,7 @@
 		5B397097202800FB00B41305 /* r2mem_cod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = r2mem_cod.h; sourceTree = "<group>"; };
 		5B397098202800FB00B41305 /* vt_word_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vt_word_manager.h; sourceTree = "<group>"; };
 		5B397099202800FB00B41305 /* vsys_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vsys_types.h; sourceTree = "<group>"; };
-		5B39709A202800FB00B41305 /* vt_phoneme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vt_phoneme.h; sourceTree = "<group>"; };
+		5B39709A202800FB00B41305 /* phones.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = phones.h; sourceTree = "<group>"; };
 		5B39709B202800FB00B41305 /* vsys_activation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vsys_activation.cpp; sourceTree = "<group>"; };
 		5B39709C202800FB00B41305 /* voice_activation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = voice_activation.h; sourceTree = "<group>"; };
 		5B39709D202800FB00B41305 /* buf_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buf_manager.h; sourceTree = "<group>"; };
@@ -501,10 +504,12 @@
 				5B39709B202800FB00B41305 /* vsys_activation.cpp */,
 				5B3970A0202800FB00B41305 /* vsys_audio.h */,
 				5B39709F202800FB00B41305 /* vsys_neon.h */,
-				5B39709A202800FB00B41305 /* vt_phoneme.h */,
 				5B397092202800FB00B41305 /* vt_word_manager.cpp */,
 				5B397098202800FB00B41305 /* vt_word_manager.h */,
 				5B3970B92028013400B41305 /* cpu_relax.h */,
+				5B39709A202800FB00B41305 /* phones.h */,
+				5B335A6220479D30000418AC /* phoneme.h */,
+				5B335A6320479D46000418AC /* phoneme.cpp */,
 			);
 			path = activation;
 			sourceTree = "<group>";
@@ -923,7 +928,7 @@
 				5B3970AB202800FC00B41305 /* r2mem_cod.h in Headers */,
 				5B3970B0202800FC00B41305 /* voice_activation.h in Headers */,
 				5B3970AD202800FC00B41305 /* vsys_types.h in Headers */,
-				5B3970AE202800FC00B41305 /* vt_phoneme.h in Headers */,
+				5B3970AE202800FC00B41305 /* phones.h in Headers */,
 				5B3970B3202800FC00B41305 /* vsys_neon.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1243,6 +1248,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B335A6420479D46000418AC /* phoneme.cpp in Sources */,
 				5B3970AF202800FC00B41305 /* vsys_activation.cpp in Sources */,
 				5B3970C02028014400B41305 /* aec_wrap.cpp in Sources */,
 				5B3970A7202800FC00B41305 /* vt_word_manager.cpp in Sources */,

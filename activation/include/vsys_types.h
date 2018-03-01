@@ -16,10 +16,10 @@
 #include <cstddef>
 
 enum {
-    AUDIO_FORMAT_PCM_16_BIT         = 16,
-//    AUDIO_FORMAT_PCM_24_BIT         = 24,
-//    AUDIO_FORMAT_PCM_32_BIT         = 32,
-    AUDIO_FORMAT_PCM_32F_BIT        = 32,
+    AUDIO_FORMAT_PCM_16_BIT         = 0x1,
+    AUDIO_FORMAT_PCM_24_BIT         = 0x2,
+    AUDIO_FORMAT_PCM_32_BIT         = 0x3,
+    AUDIO_FORMAT_PCM_32F_BIT        = 0x4,
 };
 
 enum {
@@ -96,8 +96,19 @@ enum word_type{
 
 typedef struct{
     word_type type;
-    const char* word_utf8;
-    const char* pinyin;
+    char word_utf8[128];
+    char pinyin[128];
+    char model[128];
+    
+    float block_avg_score;
+    float block_min_score;
+    float classify_shield;
+    
+    bool left_sil_det;
+    bool right_sil_det;
+    bool remote_check_with_aec;
+    bool remote_check_without_aec;
+    bool local_classify_check;
 }vt_word_t;
 
 #endif /* VSYS_TYPES_H */

@@ -1,15 +1,15 @@
 //
-//  vt_phone_table.h
+//  phones.h
 //  vsys
 //
 //  Created by 薯条 on 2018/1/19.
 //  Copyright © 2018年 薯条. All rights reserved.
 //
 
-#ifndef VT_PHONEME_H
-#define VT_PHONEME_H
+#ifndef PHONES_H
+#define PHONES_H
 
-const char vt_phoneme[] =
+const char phones[] =
 "a1 a1_S\n"
 "a2 a2_S\n"
 "a3 a3_S\n"
@@ -2041,4 +2041,4 @@ const char vt_phoneme[] =
 "zuo4 z_B w o4_E\n"
 "zuo5 z_B w o3_E\n";
 
-#endif /* VT_PHONEME_H */
+#endif /* PHONES_H */

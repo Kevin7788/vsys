@@ -14,8 +14,8 @@
 #include <mutex>
 
 #include "zvtapi.h"
-#include "vt_phoneme.h"
 #include "vsys_types.h"
+#include "phoneme.h"
 
 namespace vsys {
     
@@ -27,7 +27,7 @@ enum AcousticModel{
 class VtWordManager{
 public:
     VtWordManager(void* _token, int32_t (*_set)(void* token, const WordInfo* word_info, const uint32_t& word_num), AcousticModel _model)
-    :token(_token), set(_set), model(_model){}
+    :token(_token), set(_set), phoneme(std::make_shared<Phoneme>()), vt_model(_model){}
     
     int32_t set_vt_word(const vt_word_t* vt_word);
     
@@ -40,9 +40,11 @@ private:
     
     bool is_exist(const std::string& word);
     
+    uint32_t get_word_size(const std::string& pinyin);
+    
     WordType get_vt_type(word_type type);
     
-    bool pinyin_to_phoneme(const std::string& pinyin, std::string& phone);
+    bool pinyin2phoneme(const std::string& pinyin, std::string& phone);
     
     bool vt_word_formation(const word_type type, const std::string& word, const std::string& pinyin, WordInfo& word_info);
 
@@ -55,7 +57,9 @@ private:
     
     std::mutex vt_mutex;
     
-    AcousticModel model;
+    std::shared_ptr<Phoneme> phoneme;
+    
+    AcousticModel vt_model;
     
     void* token;
 };

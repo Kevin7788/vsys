@@ -9,9 +9,6 @@
 #ifndef VSYS_TYPES_H
 #define VSYS_TYPES_H
 
-#define MIC_PARAM_POSTION_MASK  0x1
-#define MIC_PARAM_DELAY_MASK    0x2
-
 #include <inttypes.h>
 #include <cstddef>
 
@@ -23,9 +20,14 @@ enum {
 };
 
 enum {
-    AUDIO_SAMPLT_RATE_16K         = 16000,
+    AUDIO_SAMPLT_RATE_16K           = 16000,
 //    AUDIO_SAMPLT_RATE_48K         = 48000,
 //    AUDIO_SAMPLT_RATE_96K         = 96000,
+};
+
+enum active_param_mask{
+    MIC_PARAM_POSTION_MASK          = 1 << 0,
+    MIC_PARAM_DELAY_MASK            = 1 << 1,
 };
 
 typedef struct {
@@ -33,35 +35,35 @@ typedef struct {
 }position_t;
 
 typedef struct {
-    position_t position;
-    uint32_t id;
-    float delay;
+    position_t position;                // 麦克风三维坐标
+    uint32_t id;                        // 麦克风通道id
+    float delay;                        // 麦克风延时
 }mic_param_t;
 
 typedef struct {
-    uint32_t sample_rate;
-    uint32_t sample_size_bits;
-    uint32_t num_mics;
-    uint32_t num_channels;
-    mic_param_t* mic_params;
-    uint32_t mask;
+    uint32_t sample_rate;               // 采样率
+    uint32_t sample_size_bits;          // 比特率
+    uint32_t num_mics;                  // 麦克风数量
+    uint32_t num_channels;              // 通道数量
+    mic_param_t* mic_params;            // 麦克风精确配置
+    uint32_t mask; 
 }activation_param_t;
 
 typedef struct {
-    size_t begin;
-    size_t end;
-    float energy;
+    size_t begin;                       //
+    size_t end;                         // 
+    float energy;                       // 激活词能量
 } vt_info_t;
 
 typedef struct{
-    vt_info_t vt_info;
+    vt_info_t vt_info;                  // 激活信息
     
-    uint32_t event;
-    size_t length;
-    
-    float energy;
-    float threshold_energy;
-    float sound_location;
+    uint32_t event;                     // 激活事件
+    size_t length;                      // 当event为VOICE_EVENT_VT_INFO时，length为激活词长度
+                                        // 当event为VOICE_EVENT_VAD_DATA时，length为vad长度
+    float energy;                       // 
+    float threshold_energy;             // 背景噪声预值
+    float sound_location;               // 激活角度
     
     void* data;
 }voice_event_t;
@@ -80,8 +82,8 @@ enum {
 };
 
 enum active_action{
-    ACTIVATION_SET_STATE_AWAKE = 200,
-    ACTIVATION_SET_STATE_SLEEP,
+    ACTIVATION_SET_STATE_AWAKE = 200,   // 设置当前为激活状态
+    ACTIVATION_SET_STATE_SLEEP,         // 设置当前为休眠状态
 };
 
 //enum active_param{
@@ -89,26 +91,36 @@ enum active_action{
 //};
 
 enum word_type{
-    VSYS_WORD_AWAKE = 1 ,
-    VSYS_WORD_SLEEP ,
-    VSYS_WORD_HOTWORD ,
+    VSYS_WORD_AWAKE = 1 ,               // 激活词
+    VSYS_WORD_SLEEP ,                   // 休眠词
+    VSYS_WORD_HOTWORD ,                 // 热词
 };
 
+enum vt_word_mask{
+    VSYS_VT_WORD_USE_OUTSIDE_PHONE_MASK         = 1 << 0,       // 使用外部传入的音素
+    VSYS_VT_WORD_LEFT_SIL_DET_MASK              = 1 << 1,       // 开启左静音检测
+    VSYS_VT_WORD_RIGHT_SIL_DET_MASK             = 1 << 2,       // 开启右静音检测
+    VSYS_VT_WORD_REMOTE_CHECK_WITH_AEC_MASK     = 1 << 3,       // AEC条件下远端二次确认
+    VSYS_VT_WORD_REMOTE_CHECK_WITH_NOAEC_MASK   = 1 << 4,       // 非AEC条件下远端二次确认
+    VSYS_VT_WORD_LOCAL_CLASSIFY_CHECK_MASK      = 1 << 5,       // 开启本地二次确认
+};
+
+#define VSYS_VT_WORD_MASK_DEFAULT (mask |= VSYS_VT_WORD_LEFT_SIL_DET_MASK              \
+                                        |= VSYS_VT_WORD_REMOTE_CHECK_WITH_AEC_MASK     \
+                                        |= VSYS_VT_WORD_REMOTE_CHECK_WITH_NOAEC_MASK)
+
 typedef struct{
-    word_type type;                 
-    char pinyin[256];
-    char model_path[256];
-    char word_utf8[128];
+    char phone[256];                    // 激活词内容，phone串 
+    char nnet_path[256];                // 本地二次确认模型相对路径
+    char word_utf8[128];                // 激活词中文字符串，UTF-8编码
     
-    float block_avg_score;
-    float block_min_score;
-    float classify_shield;
-    
-    bool left_sil_det;
-    bool right_sil_det;
-    bool remote_check_with_aec;
-    bool remote_check_without_aec;
-    bool local_classify_check;
+    float block_avg_score;              // 所有phone声学平均得分门限(建议大于等于3.2，小于等于4.2)
+    float block_min_score;              // 单个phone声学最小得分门限(建议大于等于1.7，小于等于2.7)
+    float classify_shield;              // 本地二次确认门限，只在本地有模型，并开启本地二次确认情况下有效(建议为-0.3)
+
+    uint32_t mask;                      // 其他配置，见{vt_word_mask}定义
+    word_type type;                     // 激活词类型，见{word_type}定义
+ 
 }vt_word_t;
 
 #endif /* VSYS_TYPES_H */

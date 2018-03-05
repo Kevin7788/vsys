@@ -21,11 +21,12 @@ Phoneme::~Phoneme(){
 
 void Phoneme::load_phoneme(){
     char line[1024];
-    uint32_t left = 0, right = 0;
-    bool is_head = false, has_head = false;
     
     while(read_line(line)){
+        uint32_t left = 0, right = 0;
+        bool is_head = false, has_head = false;
         std::string head, content;
+        
         while(true){
             switch (line[right]) {
                 case ' ':
@@ -49,10 +50,8 @@ void Phoneme::load_phoneme(){
             right++;
         }
 done:
-        left = right = 0;
-        is_head = has_head = false;
-        memset(line, 0, sizeof(line));
         phoneme_maps.insert(std::make_pair(head, content));
+        memset(line, 0, sizeof(line));
     }
 }
     

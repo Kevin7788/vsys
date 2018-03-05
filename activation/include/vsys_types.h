@@ -9,8 +9,8 @@
 #ifndef VSYS_TYPES_H
 #define VSYS_TYPES_H
 
-#define CHANNEL_PARAM_POSTION_MASK  0x1
-#define CHANNEL_PARAM_DELAY_MASK    0x2
+#define MIC_PARAM_POSTION_MASK  0x1
+#define MIC_PARAM_DELAY_MASK    0x2
 
 #include <inttypes.h>
 #include <cstddef>
@@ -36,14 +36,14 @@ typedef struct {
     position_t position;
     uint32_t id;
     float delay;
-}channel_param_t;
+}mic_param_t;
 
 typedef struct {
-    channel_param_t* channel_params;
     uint32_t sample_rate;
     uint32_t sample_size_bits;
     uint32_t num_mics;
     uint32_t num_channels;
+    mic_param_t* mic_params;
     uint32_t mask;
 }activation_param_t;
 
@@ -95,10 +95,10 @@ enum word_type{
 };
 
 typedef struct{
-    word_type type;
+    word_type type;                 
+    char pinyin[256];
+    char model_path[256];
     char word_utf8[128];
-    char pinyin[128];
-    char model[128];
     
     float block_avg_score;
     float block_min_score;

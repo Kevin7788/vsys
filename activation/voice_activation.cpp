@@ -77,7 +77,7 @@ int32_t VoiceActivation::init(const activation_param_t* param, const char* path,
     frame_size = sample_rate / 1000 * SAMPLE_RATE_MS;
     this->vad_enable = vad_enable;
     
-    VSYS_DEBUGI("init(): sampleRateHz %d, sampleSizeInBits %d, num_mics %d, numChannels %d, frame_size %d",
+    VSYS_DEBUGI("init(): sample rate %d, sample bits %d, mic num %d, channel num %d, frame size %d",
                 sample_rate, sample_size_bits, num_mics, num_channels, frame_size);
     
     snprintf(nnet_path, sizeof(nnet_path), "%s/workdir_cn/rasr.emb.ini", path);
@@ -98,12 +98,12 @@ int32_t VoiceActivation::init(const activation_param_t* param, const char* path,
     }
     nnet_stream.close();
     
-    audio_converter = std::make_shared<AudioConverter>(sample_size_bits, num_channels, mic_ids);
+    audio_converter = std::make_shared<AudioConverter>(sample_size_bits, num_mics, num_channels, mic_ids);
     
-    buff = malloc_buffer2(num_channels, frame_size);
+    buff = malloc_buffer2(num_mics, frame_size);
     
-    if(num_channels > 1)
-    bf_input = (float *)malloc_buffer(frame_size * num_channels * sizeof(float));
+    if(num_mics > 1)
+    bf_input = (float *)malloc_buffer(frame_size * num_mics * sizeof(float));
     
     vad_input_total = frame_size;
     vad_input = (float *)malloc_buffer(vad_input_total * sizeof(float));
@@ -128,38 +128,38 @@ int32_t VoiceActivation::set_parameters(const activation_param_t* param){
     num_mics = param->num_mics;
     num_channels = param->num_channels;
     
-    mic_ids = new uint32_t[num_channels];
-    mic_pos = new float[num_channels * 3];
-    mic_delay = new float[num_channels];
-    memset(mic_ids, 0, num_channels * sizeof(uint32_t));
-    memset(mic_pos, 0, num_channels * 3 * sizeof(float));
-    memset(mic_delay, 0, num_channels * sizeof(float));
+    mic_ids = new uint32_t[num_mics];
+    mic_pos = new float[num_mics * 3];
+    mic_delay = new float[num_mics];
+    memset(mic_ids, 0, num_mics * sizeof(uint32_t));
+    memset(mic_pos, 0, num_mics * 3 * sizeof(float));
+    memset(mic_delay, 0, num_mics * sizeof(float));
     
-    if(param->channel_params != nullptr){
-        for (uint32_t i = 0; i < num_channels; i++) {
-            if(param->channel_params[i].id >= num_mics){
-                VSYS_DEBUGE("Invalid channel id : id %d, num_mics %d", param->channel_params[i].id, num_mics);
+    if(param->mic_params != nullptr){
+        for (uint32_t i = 0; i < num_mics; i++) {
+            if(param->mic_params[i].id >= num_channels){
+                VSYS_DEBUGE("Invalid mic id %d, the max channel is %d", param->mic_params[i].id, num_channels);
                 return -1;
             }
-            mic_ids[i] = param->channel_params[i].id;
+            mic_ids[i] = param->mic_params[i].id;
         }
-        if(param->mask & CHANNEL_PARAM_POSTION_MASK){
-            for (uint32_t i = 0; i < num_channels; i++) {
-                mic_pos[i * 3 + 0] = param->channel_params[i].position.x;
-                mic_pos[i * 3 + 1] = param->channel_params[i].position.y;
-                mic_pos[i * 3 + 2] = param->channel_params[i].position.z;
+        if(param->mask & MIC_PARAM_POSTION_MASK){
+            for (uint32_t i = 0; i < num_mics; i++) {
+                mic_pos[i * 3 + 0] = param->mic_params[i].position.x;
+                mic_pos[i * 3 + 1] = param->mic_params[i].position.y;
+                mic_pos[i * 3 + 2] = param->mic_params[i].position.z;
             }
         }
-        if(param->mask & CHANNEL_PARAM_DELAY_MASK){
-            for (uint32_t i = 0; i < num_channels; i++) {
-                mic_delay[i] = param->channel_params[i].delay;
+        if(param->mask & MIC_PARAM_DELAY_MASK){
+            for (uint32_t i = 0; i < num_mics; i++) {
+                mic_delay[i] = param->mic_params[i].delay;
             }
         }
-    }else if(num_channels > 1 || num_mics != 1){
-        VSYS_DEBUGE("Invalid channel number : num_channels %d, num_mics %d", num_channels, num_mics);
+    }else if(num_mics > 1 || num_channels != 1){
+        VSYS_DEBUGE("Invalid parameter : mic num %d, channel num %d", num_mics, num_channels);
         return -1;
     }
-    for (uint32_t i = 0; i < num_channels; i++) {
+    for (uint32_t i = 0; i < num_mics; i++) {
         VSYS_DEBUGD("set_parameters(): %d, [%f, %f, %f], %f",
                     mic_ids[i], mic_pos[i * 3 + 0], mic_pos[i * 3 + 1], mic_pos[i * 3 + 2], mic_delay[i]);
     }
@@ -167,20 +167,20 @@ int32_t VoiceActivation::set_parameters(const activation_param_t* param){
 }
     
 int32_t VoiceActivation::enter_vbv(){
-    if(num_channels > 1){
-        if(!(bf_handle = r2ssp_bf_create(mic_pos, num_channels))){
-            VSYS_DEBUGE("Failed to create bf inst %d  %p", num_channels, mic_pos);
+    if(num_mics > 1){
+        if(!(bf_handle = r2ssp_bf_create(mic_pos, num_mics))){
+            VSYS_DEBUGE("Failed to create bf inst %d  %p", num_mics, mic_pos);
             return -1;
         }
-        if(r2ssp_bf_init(bf_handle, 10, sample_rate) != 0){
+        if(r2ssp_bf_init(bf_handle, SAMPLE_RATE_MS, sample_rate) != 0){
             //
         }
-        if(r2ssp_bf_set_mic_delays(bf_handle, mic_delay, num_channels) != 0){
+        if(r2ssp_bf_set_mic_delays(bf_handle, mic_delay, num_mics) != 0){
             //
         }
         set_beam_former_steer(sl_info[0], sl_info[1]);
     }
-    if(!(vbv_handle = r2_vbv_create(num_channels, mic_pos, mic_delay, nnet_path, phone_table))){
+    if(!(vbv_handle = r2_vbv_create(num_mics, mic_pos, mic_delay, nnet_path, phone_table))){
         VSYS_DEBUGE("Failed to create vbv inst");
         return -1;
     }
@@ -264,7 +264,7 @@ void VoiceActivation::regist_callback(voice_event_callback callback, void* token
 int32_t VoiceActivation::process(const uint8_t* input, const size_t& byte_size){
     
     if(byte_size > 0 && input == nullptr) return -1;
-    if(byte_size % ((audio_bytes_per_sample(sample_size_bits) * num_mics)) != 0) {
+    if(byte_size % ((audio_bytes_per_sample(sample_size_bits) * num_channels)) != 0) {
         VSYS_DEBUGE("Unknown input format");
         return -1;
     }
@@ -282,8 +282,8 @@ int32_t VoiceActivation::process(const uint8_t* input, const size_t& byte_size){
     int32_t ret = 0;
 //    std::chrono::steady_clock::time_point tp = std::chrono::steady_clock::now();
     for (uint32_t i = 0; i < num_frames; i++) {
-        for (uint32_t j = 0; j < num_channels; j++) {
-            memcpy(buff[j] + offset, data_mul[mic_ids[j]] + i * frame_size - offset2, (frame_size - offset) * sizeof(float));
+        for (uint32_t j = 0; j < num_mics; j++) {
+            memcpy(buff[j] + offset, data_mul[j] + i * frame_size - offset2, (frame_size - offset) * sizeof(float));
         }
 //        pcm_out.write((char *)(buff[0]), frame_size * sizeof(float));
         
@@ -296,8 +296,8 @@ int32_t VoiceActivation::process(const uint8_t* input, const size_t& byte_size){
 //    VSYS_DEBUGI("----------------------------------------                  %lld", elapsed.count());
     buff_offset = total % frame_size;
     uint32_t length = total > frame_size ? buff_offset : len_mul;
-    for (uint32_t i = 0; i < num_channels; i++) {
-        memcpy(buff[i], data_mul[mic_ids[i]] + (len_mul - length), length * sizeof(float));
+    for (uint32_t i = 0; i < num_mics; i++) {
+        memcpy(buff[i], data_mul[i] + (len_mul - length), length * sizeof(float));
     }
     return ret;
 }
@@ -462,10 +462,10 @@ int32_t VoiceActivation::beam_forming(const float** input, const uint32_t input_
         
         check_buffer(bf_output, num_frames * frame_size, bf_output_total);
         for (uint32_t i = 0; i < num_frames; i++) {
-            for (uint32_t j = 0; j < num_channels; j++) {
-                memcpy(bf_input + j * frame_size + offset, input[mic_ids[j]] + i * frame_size - offset2, (frame_size - offset) * sizeof(float));
+            for (uint32_t j = 0; j < num_mics; j++) {
+                memcpy(bf_input + j * frame_size + offset, input[j] + i * frame_size - offset2, (frame_size - offset) * sizeof(float));
             }
-            if(r2ssp_bf_process(bf_handle, bf_input, frame_size * num_channels, num_channels, bf_output + i * frame_size) != 0){
+            if(r2ssp_bf_process(bf_handle, bf_input, frame_size * num_mics, num_mics, bf_output + i * frame_size) != 0){
 //                return -1;
             }
             offset = 0;
@@ -473,13 +473,13 @@ int32_t VoiceActivation::beam_forming(const float** input, const uint32_t input_
         }
         bf_input_offset = total % frame_size;
         uint32_t length = total > frame_size ? bf_input_offset : input_size;
-        for (uint32_t i = 0; i < num_channels; i++) {
-            memcpy(bf_input + i * frame_size + offset, input[mic_ids[i]] + (input_size - length), length * sizeof(float));
+        for (uint32_t i = 0; i < num_mics; i++) {
+            memcpy(bf_input + i * frame_size + offset, input[i] + (input_size - length), length * sizeof(float));
         }
         output_size = frame_size * num_frames;
     }else{
         check_buffer(bf_output, input_size, bf_output_total);
-        memcpy(bf_output, input[mic_ids[0]], input_size * sizeof(float));
+        memcpy(bf_output, input[0], input_size * sizeof(float));
         output_size = input_size;
     }
     output = bf_output;
@@ -495,19 +495,11 @@ void VoiceActivation::set_beam_former_steer(float azimuth, float elevation, int3
 }
     
 int32_t VoiceActivation::bf_reset(){
-    if(num_channels > 1){
+    if(num_mics > 1){
         r2ssp_bf_free(bf_handle);
-        bf_handle = 0;
-        if(!(bf_handle = r2ssp_bf_create(mic_pos, num_channels))){
-            VSYS_DEBUGE("Failed to create bf inst %d  %p", num_channels, mic_pos);
-            return -1;
-        }
-        if(r2ssp_bf_init(bf_handle, 10, sample_rate) != 0){
-            //
-        }
-        if(r2ssp_bf_set_mic_delays(bf_handle, mic_delay, num_channels) != 0){
-            //
-        }
+        bf_handle = r2ssp_bf_create(mic_pos, num_mics);
+        r2ssp_bf_init(bf_handle, SAMPLE_RATE_MS, sample_rate);
+        r2ssp_bf_set_mic_delays(bf_handle, mic_delay, num_mics);
         set_beam_former_steer(sl_info[0], sl_info[1]);
     }
     return 0;
@@ -582,7 +574,7 @@ void VoiceActivation::check_buffer(float*& buff, uint32_t input_size, uint32_t& 
 void VoiceActivation::check_buffer(float**& buff, uint32_t input_size, uint32_t& src_size){
     if(input_size > src_size){
         src_size = input_size;
-        remalloc_buffer2(&buff, num_channels, 0, src_size);
+        remalloc_buffer2(&buff, num_mics, 0, src_size);
     }
 }
 

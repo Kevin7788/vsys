@@ -50,7 +50,7 @@ float mic_pos[] = {
 };
 
 void test_activation(){
-    channel_param_t channel_param[8];
+    mic_param_t channel_param[8];
     for (uint32_t i = 0; i < 8; i++) {
         channel_param[i].position.x = mic_pos[i * 3 + 0];
         channel_param[i].position.y = mic_pos[i * 3 + 1];
@@ -60,13 +60,13 @@ void test_activation(){
     }
     
     activation_param_t param;
-    param.channel_params = channel_param;
+    param.mic_params = channel_param;
     param.sample_rate = AUDIO_SAMPLT_RATE_16K;
     param.sample_size_bits = AUDIO_FORMAT_PCM_32F_BIT;
     param.num_mics = 8;
     param.num_channels = 8;
-    param.mask |= CHANNEL_PARAM_POSTION_MASK;
-//    param.mask |= CHANNEL_PARAM_DELAY_MASK;
+    param.mask |= MIC_PARAM_POSTION_MASK;
+//    param.mask |= MIC_PARAM_DELAY_MASK;
     
     bool loop = true;
     srand(time(nullptr));

@@ -55,9 +55,9 @@ private:
 private:
     std::vector<WordInfo> word_infos;
     
-    std::mutex vt_mutex;
-    
     std::shared_ptr<Phoneme> phoneme;
+    
+    std::mutex vt_mutex;
     
     AcousticModel vt_model;
     

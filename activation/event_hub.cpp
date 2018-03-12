@@ -42,7 +42,7 @@ void EventHub::thread_loop(){
     std::unique_lock<decltype(mutex)> locker(mutex, std::defer_lock);
     while (true) {
         locker.lock();
-        condition.wait(locker, [this]{return !voice_events.empty();});
+        condition.wait(locker, [this]{return (thread_exit || !voice_events.empty());});
         if(thread_exit) break;
 
         voice_event_t* voice_event = voice_events.front();

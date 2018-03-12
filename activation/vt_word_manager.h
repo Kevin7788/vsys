@@ -26,10 +26,10 @@ enum AcousticModel{
     
 class VtWordManager{
 public:
-    VtWordManager(void* _token, int32_t (*_set)(void* token, const WordInfo* word_info, const uint32_t& word_num), AcousticModel _model)
-    :token(_token), set(_set), phoneme(std::make_shared<Phoneme>()), vt_model(_model){}
+    VtWordManager(void* _token, int32_t (*_sync_vt_word)(void* token, const WordInfo* word_info, const uint32_t& word_num), AcousticModel _model)
+    :token(_token), sync_vt_word(_sync_vt_word), phoneme(std::make_shared<Phoneme>()), vt_model(_model){}
     
-    int32_t set_vt_word(const vt_word_t* vt_word);
+    int32_t add_vt_word(const vt_word_t* vt_word);
     
     int32_t remove_vt_word(const std::string& word);
     
@@ -50,10 +50,10 @@ private:
 
     bool get_all_vt_words();
     
-    int32_t (*set)(void* token, const WordInfo* word_info, const uint32_t& word_num);
+    int32_t (*sync_vt_word)(void* token, const WordInfo* word_info, const uint32_t& word_num);
     
 private:
-    std::vector<WordInfo> word_infos;
+    std::vector<vt_word_t> word_infos;
     
     std::shared_ptr<Phoneme> phoneme;
     

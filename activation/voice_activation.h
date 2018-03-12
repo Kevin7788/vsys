@@ -59,7 +59,7 @@ private:
     
     int32_t set_parameters(const activation_param_t* param);
     
-    int32_t set_vt_word(const WordInfo* word_info, const uint32_t& word_num);
+    int32_t sync_vt_word(const WordInfo* word_info, const uint32_t& word_num);
     
     int32_t processfrm(const float** input, const size_t& input_size);
     

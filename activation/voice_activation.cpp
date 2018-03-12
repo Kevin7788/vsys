@@ -117,7 +117,7 @@ int32_t VoiceActivation::init(const activation_param_t* param, const char* path,
 void VoiceActivation::create_vt_manager(AcousticModel model){
     vt_word_manager = std::make_shared<VtWordManager>((void *)this,
           [](void* token, const WordInfo* word_info, const uint32_t& word_num)->int32_t{
-              return ((VoiceActivation *)token)->set_vt_word(word_info, word_num);
+              return ((VoiceActivation *)token)->sync_vt_word(word_info, word_num);
           }, model);
 }
     
@@ -199,7 +199,7 @@ int32_t VoiceActivation::enter_vbv(){
     pWordLst[0].fClassifyShield = -0.3f ;
     strcpy(pWordLst[0].pLocalClassifyNnetPath, nnet_path_ruoqi);
     
-    set_vt_word(pWordLst, 1);
+    sync_vt_word(pWordLst, 1);
 
     if(!(vad_handle = VD_NewVad(1))){
         VSYS_DEBUGE("Failed to create vad inst");
@@ -214,7 +214,7 @@ void VoiceActivation::exit_vbv(){
     VD_DelVad(vad_handle);
 }
     
-int32_t VoiceActivation::set_vt_word(const WordInfo* word_info, const uint32_t& word_num){
+int32_t VoiceActivation::sync_vt_word(const WordInfo* word_info, const uint32_t& word_num){
     
     while (locker.test_and_set(std::memory_order_acquire));
     int ret = r2_vbv_setwords(vbv_handle, word_info, word_num);
@@ -240,12 +240,12 @@ int32_t VoiceActivation::control(active_action action){
 int32_t VoiceActivation::add_vt_word(const vt_word_t* vt_word){
     if(vt_word == nullptr) return -1;
     
-    VSYS_DEBUGE("Word %s, Pinyin %s", vt_word->word_utf8, vt_word->pinyin);
+    VSYS_DEBUGE("word %s, phone %s", vt_word->word_utf8, vt_word->phone);
     
-    if(vt_word->word_utf8 == nullptr || vt_word->pinyin == nullptr){
+    if(strlen(vt_word->word_utf8) || strlen(vt_word->phone) <= 0){
         return -1;
     }
-    return vt_word_manager->set_vt_word(vt_word);
+    return vt_word_manager->add_vt_word(vt_word);
 }
 
 int32_t VoiceActivation::remove_vt_word(const std::string& word){

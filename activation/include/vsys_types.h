@@ -97,12 +97,12 @@ enum word_type{
 };
 
 enum vt_word_mask{
-    VSYS_VT_WORD_USE_OUTSIDE_PHONE_MASK         = 1 << 0,       // 使用外部传入的音素
-    VSYS_VT_WORD_LEFT_SIL_DET_MASK              = 1 << 1,       // 开启左静音检测
-    VSYS_VT_WORD_RIGHT_SIL_DET_MASK             = 1 << 2,       // 开启右静音检测
-    VSYS_VT_WORD_REMOTE_CHECK_WITH_AEC_MASK     = 1 << 3,       // AEC条件下远端二次确认
-    VSYS_VT_WORD_REMOTE_CHECK_WITH_NOAEC_MASK   = 1 << 4,       // 非AEC条件下远端二次确认
-    VSYS_VT_WORD_LOCAL_CLASSIFY_CHECK_MASK      = 1 << 5,       // 开启本地二次确认
+    VT_WORD_USE_OUTSIDE_PHONE_MASK         = 1 << 0,       // 使用外部传入的音素
+    VT_WORD_LEFT_SIL_DET_MASK              = 1 << 1,       // 开启左静音检测
+    VT_WORD_RIGHT_SIL_DET_MASK             = 1 << 2,       // 开启右静音检测
+    VT_WORD_REMOTE_CHECK_WITH_AEC_MASK     = 1 << 3,       // AEC条件下远端二次确认
+    VT_WORD_REMOTE_CHECK_WITH_NOAEC_MASK   = 1 << 4,       // 非AEC条件下远端二次确认
+    VT_WORD_LOCAL_CLASSIFY_CHECK_MASK      = 1 << 5,       // 开启本地二次确认
 };
 
 #define VSYS_VT_WORD_MASK_DEFAULT (mask |= VSYS_VT_WORD_LEFT_SIL_DET_MASK              \
@@ -120,7 +120,6 @@ typedef struct{
 
     uint32_t mask;                      // 其他配置，见{vt_word_mask}定义
     word_type type;                     // 激活词类型，见{word_type}定义
- 
 }vt_word_t;
 
 #endif /* VSYS_TYPES_H */

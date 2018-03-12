@@ -13,21 +13,20 @@
 
 namespace vsys {
     
-int32_t VtWordManager::set_vt_word(const vt_word_t* vt_word){
+int32_t VtWordManager::add_vt_word(const vt_word_t* vt_word){
     if(!is_valid_vt_type(vt_word->type)){
-        VSYS_DEBUGE("Invalid vt type %d", vt_word->type);
+        VSYS_DEBUGE("Unknown vt type %d", vt_word->type);
         return -1;
     }
-    if(is_exist(vt_word->word_utf8)){
-        VSYS_DEBUGI("vt word is existed %s", vt_word->word_utf8);
-        return 0;
-    }
+    
+    
+    
     WordInfo word_info;
-    if(!vt_word_formation(vt_word->type, vt_word->word_utf8, vt_word->pinyin, word_info)){
+    if(!vt_word_formation(vt_word->type, vt_word->word_utf8, vt_word->phone, word_info)){
         return -1;
     }
     std::lock_guard<decltype(vt_mutex)> locker(vt_mutex);
-    word_infos.push_back(word_info);
+//    word_infos.push_back(word_info);
     return 0;
 }
 
@@ -58,16 +57,16 @@ bool VtWordManager::is_valid_vt_type(word_type type){
 }
     
 bool VtWordManager::is_exist(const std::string& word){
-    if(!word_infos.empty()){
-        std::vector<WordInfo>::iterator it_begin = word_infos.begin();
-        std::vector<WordInfo>::iterator it_end = word_infos.end();
-        while (it_begin != it_end) {
-            if(!strcmp(word.c_str(), it_begin->pWordContent_UTF8)){
-                return true;
-            }
-            it_begin++;
-        }
-    }
+//    if(!word_infos.empty()){
+//        std::vector<WordInfo>::iterator it_begin = word_infos.begin();
+//        std::vector<WordInfo>::iterator it_end = word_infos.end();
+//        while (it_begin != it_end) {
+//            if(!strcmp(word.c_str(), it_begin->pWordContent_UTF8)){
+//                return true;
+//            }
+//            it_begin++;
+//        }
+//    }
     return false;
 }
     

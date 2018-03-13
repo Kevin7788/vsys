@@ -18,31 +18,41 @@ int32_t VtWordManager::add_vt_word(const vt_word_t* vt_word){
         VSYS_DEBUGE("Unknown vt type %d", vt_word->type);
         return -1;
     }
-    
-    
-    
-    WordInfo word_info;
-    if(!vt_word_formation(vt_word->type, vt_word->word_utf8, vt_word->phone, word_info)){
+    if(has_vt_word(vt_word->word_utf8)){
+        VSYS_DEBUGE("%s already exists", vt_word->word_utf8);
         return -1;
     }
-    std::lock_guard<decltype(vt_mutex)> locker(vt_mutex);
-//    word_infos.push_back(word_info);
-    return 0;
+    {
+        std::lock_guard<decltype(vt_mutex)> locker(vt_mutex);
+        vt_words.push_back(*vt_word);
+    }
+    return sync_vt_word();
 }
 
 int32_t VtWordManager::remove_vt_word(const std::string& word){
-    
-    std::lock_guard<decltype(vt_mutex)> locker(vt_mutex);
-    
-    if(!is_exist(word)){
-        VSYS_DEBUGI("vt word no existed %s", word.c_str());
+    bool find = false;
+    {
+        std::lock_guard<decltype(vt_mutex)> locker(vt_mutex);
+        
+        std::vector<vt_word_t>::iterator it =  vt_words.begin();
+        while (it != vt_words.end()) {
+            if(word.compare(it->word_utf8) == 0){
+                vt_words.erase(it);
+                find = true;
+            }
+        }
+    }
+    if(!find) {
+        VSYS_DEBUGE("%s is not exists", word.c_str());
         return -1;
     }
-    return 0;
+    return sync_vt_word();
 }
 
 int32_t VtWordManager::get_vt_words(vt_word_t*& vt_word_out){
     std::lock_guard<decltype(vt_mutex)> locker(vt_mutex);
+    
+    
     return 0;
 }
     
@@ -56,55 +66,57 @@ bool VtWordManager::is_valid_vt_type(word_type type){
     return false;
 }
     
-bool VtWordManager::is_exist(const std::string& word){
-//    if(!word_infos.empty()){
-//        std::vector<WordInfo>::iterator it_begin = word_infos.begin();
-//        std::vector<WordInfo>::iterator it_end = word_infos.end();
-//        while (it_begin != it_end) {
-//            if(!strcmp(word.c_str(), it_begin->pWordContent_UTF8)){
-//                return true;
-//            }
-//            it_begin++;
-//        }
-//    }
+bool VtWordManager::has_vt_word(const std::string &word){
+    uint32_t word_num = vt_words.size();
+    for (uint32_t i = 0; i < word_num; i++) {
+        if(word.compare(vt_words[i].word_utf8) == 0){
+            return true;
+        }
+    }
     return false;
 }
     
-bool VtWordManager::vt_word_formation(const word_type type, const std::string& word, const std::string& pinyin, WordInfo& word_info){
-    std::string vt_word = word;
-    std::string phone;
-    uint32_t word_size;
-    float block_avg_score = 4.2;
-    float block_min_score = 2.7;
+uint32_t VtWordManager::vt_word_formation(WordInfo *&word_infos){
+    std::lock_guard<decltype(vt_mutex)> locker(vt_mutex);
     
-    word_size = get_word_size(pinyin);
-    int32_t iter = (word_size + 1) / 2 - 1;
-    if(iter > 0 && iter < 3) {
-        for(int i = 0; i < iter; i++) {
-            block_avg_score -= 0.5f;
-            block_min_score -= 0.5f;
+    uint32_t word_num = vt_words.size();
+    WordInfo* __word_infos = new WordInfo[word_num];
+    
+    for (uint32_t i = 0; i < word_num; i++) {
+        std::string phone;
+    
+        float classify_shield = vt_words[i].classify_shield;
+        float block_avg_score = vt_words[i].block_avg_score;
+        float block_min_score = vt_words[i].block_min_score;
+        if(block_avg_score < 3.2f) block_avg_score = 3.2f;
+        if(block_min_score < 1.7f) block_min_score = 1.7f;
+    
+        bool left_sil_det = (vt_words[i].mask & VT_WORD_LEFT_SIL_DET_MASK) != 0 ? true : false;
+        bool right_sil_det = (vt_words[i].mask & VT_WORD_RIGHT_SIL_DET_MASK) != 0 ? true : false;
+        bool remote_asr_check_with_aec = (vt_words[i].mask & VT_WORD_REMOTE_CHECK_WITH_AEC_MASK) != 0 ? true : false;
+        bool remote_asr_check_with_noaec = (vt_words[i].mask & VT_WORD_REMOTE_CHECK_WITH_NOAEC_MASK) != 0 ? true : false;
+        bool local_classify_check = (vt_words[i].mask & VT_WORD_LOCAL_CLASSIFY_CHECK_MASK) != 0 ? true : false;
+    
+        if((vt_words[i].mask & VT_WORD_USE_OUTSIDE_PHONE_MASK) != 0){
+            if(!pinyin2phoneme(vt_words[i].phone, phone)){
+                return false;
+            }
+        }else{
+            phone = vt_words[i].phone;
         }
-    }else{
-        return false;
+        word_infos[i].iWordType = get_vt_type(vt_words[i].type);
+        strcpy(__word_infos[i].pWordContent_UTF8, vt_words[i].word_utf8);
+        strcpy(__word_infos[i].pWordContent_PHONE, phone.c_str());
+        __word_infos[i].fBlockAvgScore = block_avg_score;
+        __word_infos[i].fBlockMinScore = block_min_score;
+        __word_infos[i].bLeftSilDet = left_sil_det;
+        __word_infos[i].bRightSilDet = right_sil_det;
+        __word_infos[i].bRemoteAsrCheckWithAec = remote_asr_check_with_aec;
+        __word_infos[i].bRemoteAsrCheckWithNoAec = remote_asr_check_with_noaec;
+        __word_infos[i].bLocalClassifyCheck = local_classify_check;
+        __word_infos[i].fClassifyShield = classify_shield;
     }
-    if(block_avg_score < 3.2f) block_avg_score = 3.2f;
-    if(block_min_score < 1.7f) block_min_score = 1.7f;
-    
-    if(!pinyin2phoneme(pinyin, phone)){
-        return false;
-    }
-    word_info.iWordType = get_vt_type(type);
-    strcpy(word_info.pWordContent_UTF8, word.c_str());
-    strcpy(word_info.pWordContent_PHONE, phone.c_str());
-    word_info.fBlockAvgScore = block_avg_score;
-    word_info.fBlockMinScore = block_min_score;
-    word_info.bLeftSilDet = true;
-    word_info.bRightSilDet = false;
-    word_info.bRemoteAsrCheckWithAec = true;
-    word_info.bRemoteAsrCheckWithNoAec = true;
-    word_info.bLocalClassifyCheck = false;
-    word_info.fClassifyShield = -0.3;
-    return true;
+    return word_num;
 }
 
 bool VtWordManager::pinyin2phoneme(const std::string &pinyin, std::string &phone){
@@ -171,15 +183,13 @@ WordType VtWordManager::get_vt_type(word_type type){
     }
 }
     
-bool VtWordManager::get_all_vt_words(){
-    
-    uint32_t word_num = word_infos.size();
-    char* buf = new char[sizeof(WordInfo) * word_num + 1];
-    
-    for (uint32_t i = 0; i < word_num + 1; i++) {
-        
+int32_t VtWordManager::sync_vt_word(){
+    WordInfo* word_infos = nullptr;
+    uint32_t word_num = 0;
+    if((word_num = vt_word_formation(word_infos)) == 0){
+        return -1;
     }
-    return false;
+    return sync(token, word_infos, word_num);
 }
     
 }

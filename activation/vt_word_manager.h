@@ -26,8 +26,10 @@ enum AcousticModel{
     
 class VtWordManager{
 public:
-    VtWordManager(void* _token, int32_t (*_sync)(void* token, const WordInfo* word_info, const uint32_t& word_num), AcousticModel _model)
-    :token(_token), sync(_sync), phoneme(std::make_shared<Phoneme>()), vt_model(_model){}
+    VtWordManager(void* _token,
+                  int32_t (*_sync)(void* token, const WordInfo* word_info, const uint32_t& word_num), AcousticModel _model);
+    
+    ~VtWordManager();
     
     int32_t add_vt_word(const vt_word_t* vt_word);
     
@@ -40,24 +42,32 @@ private:
     
     bool has_vt_word(const std::string& word);
     
-    uint32_t vt_word_formation(WordInfo*& word_infos);
+    bool vt_word_formation(const vt_word_t* vt_word, WordInfo& word_info);
     
-    uint32_t get_word_size(const std::string& pinyin);
+    uint32_t get_word_size(const std::string& phone);
+    
+    float adjust_score(float score, uint32_t word_size);
     
     WordType get_vt_type(word_type type);
     
+    word_type get_vt_type(WordType type);
+    
     bool pinyin2phoneme(const std::string& pinyin, std::string& phone);
+    
+    bool save_vt_word(const vt_word_t* word_info);
     
     int32_t sync_vt_word();
     
     int32_t (*sync)(void* token, const WordInfo* word_info, const uint32_t& word_num);
     
 private:
-    std::vector<vt_word_t> vt_words;
+    std::vector<WordInfo> word_infos;
     
     std::shared_ptr<Phoneme> phoneme;
     
     std::mutex vt_mutex;
+    
+    vt_word_t* vt_words;
     
     AcousticModel vt_model;
     

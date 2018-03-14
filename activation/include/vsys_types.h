@@ -94,31 +94,33 @@ enum word_type{
     VSYS_WORD_AWAKE = 1 ,               // 激活词
     VSYS_WORD_SLEEP ,                   // 休眠词
     VSYS_WORD_HOTWORD ,                 // 热词
+    VSYS_WORD_OTHER,                    // 保留
 };
 
 enum vt_word_mask{
-    VT_WORD_USE_OUTSIDE_PHONE_MASK         = 1 << 0,       // 使用外部传入的音素
-    VT_WORD_LEFT_SIL_DET_MASK              = 1 << 1,       // 开启左静音检测
-    VT_WORD_RIGHT_SIL_DET_MASK             = 1 << 2,       // 开启右静音检测
-    VT_WORD_REMOTE_CHECK_WITH_AEC_MASK     = 1 << 3,       // AEC条件下远端二次确认
-    VT_WORD_REMOTE_CHECK_WITH_NOAEC_MASK   = 1 << 4,       // 非AEC条件下远端二次确认
-    VT_WORD_LOCAL_CLASSIFY_CHECK_MASK      = 1 << 5,       // 开启本地二次确认
+    VT_WORD_USE_OUTSIDE_PHONE_MASK          = 1 << 0,
+    VT_WORD_BLOCK_AVG_SCORE_MASK            = 1 << 1,
+    VT_WORD_BLOCK_MIN_SCROE_MASK            = 1 << 2,
+    VT_WORD_LEFT_SIL_DET_MASK               = 1 << 3,
+    VT_WORD_RIGHT_SIL_DET_MASK              = 1 << 4,
+    VT_WORD_REMOTE_CHECK_WITH_AEC_MASK      = 1 << 5,
+    VT_WORD_REMOTE_CHECK_WITH_NOAEC_MASK    = 1 << 6,
+    VT_WORD_LOCAL_CLASSIFY_CHECK_MASK       = 1 << 7,
+    VT_WORD_CLASSIFY_SHIELD_MASK            = 1 << 8,
 };
-
-#define VSYS_VT_WORD_MASK_DEFAULT (mask |= VSYS_VT_WORD_LEFT_SIL_DET_MASK              \
-                                        |= VSYS_VT_WORD_REMOTE_CHECK_WITH_AEC_MASK     \
-                                        |= VSYS_VT_WORD_REMOTE_CHECK_WITH_NOAEC_MASK)
 
 typedef struct{
     char phone[256];                    // 激活词内容，phone串 
-    char nnet_path[256];                // 本地二次确认模型相对路径
+    char nnet_path[256];                // 本地二次确认模型相对文件名
     char word_utf8[128];                // 激活词中文字符串，UTF-8编码
-    
+    uint64_t mask;                      //
     float block_avg_score;              // 所有phone声学平均得分门限(建议大于等于3.2，小于等于4.2)
     float block_min_score;              // 单个phone声学最小得分门限(建议大于等于1.7，小于等于2.7)
     float classify_shield;              // 本地二次确认门限，只在本地有模型，并开启本地二次确认情况下有效(建议为-0.3)
-
-    uint32_t mask;                      // 其他配置，见{vt_word_mask}定义
+    bool left_sil_det;                  // 开启左静音检测
+    bool right_sil_det;                 // 开启右静音检测
+    bool remote_asr_check_with_aec;     // AEC条件下远端二次确认
+    bool remote_asr_check_without_aec;  // 非AEC条件下远端二次确认
     word_type type;                     // 激活词类型，见{word_type}定义
 }vt_word_t;
 

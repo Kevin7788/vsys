@@ -95,8 +95,8 @@ bool VtWordManager::is_valid_vt_type(word_type type){
     
 bool VtWordManager::has_vt_word(const std::string &word){
     std::lock_guard<decltype(vt_mutex)> locker(vt_mutex);
+
     uint32_t word_num = word_infos.size();
-    
     for (uint32_t i = 0; i < word_num; i++) {
         if(word.compare(word_infos[i].pWordContent_UTF8) == 0){
             return true;
@@ -107,9 +107,9 @@ bool VtWordManager::has_vt_word(const std::string &word){
     
 bool VtWordManager::vt_word_formation(const vt_word_t* vt_word, WordInfo& word_info){
     std::string phone;
-    uint32_t word_size = get_word_size(vt_word->phone);
+    uint32_t word_size = get_word_size(vt_word->phone, vt_word->mask & VT_WORD_USE_OUTSIDE_PHONE_MASK);
     
-    if((vt_word->mask & VT_WORD_USE_OUTSIDE_PHONE_MASK) != 0){
+    if((vt_word->mask & VT_WORD_USE_OUTSIDE_PHONE_MASK) == 0){
         if(!pinyin2phoneme(vt_word->phone, phone)){
             return false;
         }
@@ -118,10 +118,10 @@ bool VtWordManager::vt_word_formation(const vt_word_t* vt_word, WordInfo& word_i
     }
     
     float block_avg_score = (vt_word->mask & VT_WORD_BLOCK_AVG_SCORE_MASK) != 0
-    ? vt_word->block_avg_score : adjust_score(4.2f, word_size);
+    ? vt_word->block_avg_score : get_score_param(4.2f, word_size);
     
     float block_min_score = (vt_word->mask & VT_WORD_BLOCK_MIN_SCROE_MASK) != 0
-    ? vt_word->block_min_score : adjust_score(2.7f, word_size);
+    ? vt_word->block_min_score : get_score_param(2.7f, word_size);
     
     if(block_avg_score < 3.2f) block_avg_score = 3.2f;
     if(block_min_score < 1.7f) block_min_score = 1.7f;
@@ -172,7 +172,7 @@ bool VtWordManager::pinyin2phoneme(const std::string &pinyin, std::string &phone
                 return false;
             }
             if (std::isdigit(pinyin[right])){
-                target.assign(pinyin, left, right - left);
+                target.assign(pinyin, left, right - left + 1);
                 std::string phone = phoneme->find_phoneme(target);
                 if(phone.empty()){
                     VSYS_DEBUGE("cannot find phoneme for %s", target.c_str());
@@ -201,10 +201,10 @@ bool VtWordManager::pinyin2phoneme(const std::string &pinyin, std::string &phone
     return true;
 }
     
-uint32_t VtWordManager::get_word_size(const std::string& phone){
+uint32_t VtWordManager::get_word_size(const std::string& phone, bool is_pinyin){
     uint32_t length = phone.length(), word_size = 0;
     for (uint32_t i = 0; i < length; i++) {
-        if(std::isdigit(phone[i])){
+        if(!is_pinyin && std::isdigit(phone[i])){
             word_size++;
         }
         if(phone[i] == '#' && phone[i + 1] == '#'){
@@ -214,7 +214,7 @@ uint32_t VtWordManager::get_word_size(const std::string& phone){
     return word_size;
 }
     
-float VtWordManager::adjust_score(float score, uint32_t word_size){
+float VtWordManager::get_score_param(float score, uint32_t word_size){
     int32_t iter = (word_size + 1) / 2 - 1;
     for(int i = 0; i < iter; i++) {
         score -= 0.5f;
@@ -269,7 +269,7 @@ int32_t VtWordManager::sync_vt_word(){
     int ret = sync(token, word_info_copy, word_num);;
     
     delete[] word_info_copy;
-    return ret;
+    return ret == 0 ? 0 : -1;
 }
     
 bool VtWordManager::save_vt_word(const vt_word_t* vt_word){

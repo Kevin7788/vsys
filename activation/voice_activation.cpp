@@ -195,11 +195,11 @@ int32_t VoiceActivation::enter_vbv(){
     pWordLst[0].bRightSilDet = false ;
     pWordLst[0].bRemoteAsrCheckWithAec = true ;
     pWordLst[0].bRemoteAsrCheckWithNoAec = true ;
-    pWordLst[0].bLocalClassifyCheck = false ;
+    pWordLst[0].bLocalClassifyCheck = true ;
     pWordLst[0].fClassifyShield = -0.3f ;
     strcpy(pWordLst[0].pLocalClassifyNnetPath, nnet_path_ruoqi);
     
-    sync_vt_word(pWordLst, 1);
+//    sync_vt_word(pWordLst, 1);
 
     if(!(vad_handle = VD_NewVad(1))){
         VSYS_DEBUGE("Failed to create vad inst");
@@ -215,6 +215,20 @@ void VoiceActivation::exit_vbv(){
 }
     
 int32_t VoiceActivation::sync_vt_word(const WordInfo* word_info, const uint32_t& word_num){
+    for (uint32_t i = 0;  i < word_num; i++) {
+        VSYS_DEBUGD("%s", word_info[i].pWordContent_PHONE);
+        VSYS_DEBUGD("%s", word_info[i].pWordContent_UTF8);
+        VSYS_DEBUGD("%f", word_info[i].fBlockAvgScore);
+        VSYS_DEBUGD("%f", word_info[i].fBlockMinScore);
+        VSYS_DEBUGD("%d", word_info[i].bLeftSilDet);
+        VSYS_DEBUGD("%d", word_info[i].bRightSilDet);
+        VSYS_DEBUGD("%d", word_info[i].bRemoteAsrCheckWithAec);
+        VSYS_DEBUGD("%d", word_info[i].bRemoteAsrCheckWithNoAec);
+        VSYS_DEBUGD("%d", word_info[i].bLocalClassifyCheck);
+        VSYS_DEBUGD("%f", word_info[i].fClassifyShield);
+        VSYS_DEBUGD("%s", word_info[i].pLocalClassifyNnetPath);
+        VSYS_DEBUGD("---------------------------------------------------------------------");
+    }
     
     while (locker.test_and_set(std::memory_order_acquire));
     int ret = r2_vbv_setwords(vbv_handle, word_info, word_num);
@@ -240,9 +254,9 @@ int32_t VoiceActivation::control(active_action action){
 int32_t VoiceActivation::add_vt_word(const vt_word_t* vt_word){
     if(vt_word == nullptr) return -1;
     
-    VSYS_DEBUGE("word %s, phone %s", vt_word->word_utf8, vt_word->phone);
+    VSYS_DEBUGD("word %s,       phone %s", vt_word->word_utf8, vt_word->phone);
     
-    if(strlen(vt_word->word_utf8) || strlen(vt_word->phone) <= 0){
+    if(strlen(vt_word->word_utf8) <= 0 || strlen(vt_word->phone) <= 0){
         return -1;
     }
     return vt_word_manager->add_vt_word(vt_word);

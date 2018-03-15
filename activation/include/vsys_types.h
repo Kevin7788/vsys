@@ -111,7 +111,7 @@ enum vt_word_mask{
 
 typedef struct{
     char phone[256];                    // 激活词内容，phone串 
-    char nnet_path[256];                // 本地二次确认模型相对文件名
+    char nnet_path[256];                // 本地二次确认模型绝对路径
     char word_utf8[128];                // 激活词中文字符串，UTF-8编码
     uint64_t mask;                      //
     float block_avg_score;              // 所有phone声学平均得分门限(建议大于等于3.2，小于等于4.2)

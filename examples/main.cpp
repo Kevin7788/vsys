@@ -72,13 +72,23 @@ void test_activation(){
     srand(time(nullptr));
     VsysActivationInst handle =  VsysActivation_Create(&param, "/Users/daixiang/external/thirdlib", true);
     
+    vt_word_t vt_word;
+    memset(&vt_word, 0, sizeof(vt_word_t));
+    vt_word.type = VSYS_WORD_AWAKE;
+    strcpy(vt_word.phone, "r|l|r_B|l_B|# w o4|o4_E|## q|q_B|# i2|i2_E|##");
+    strcpy(vt_word.word_utf8, "若琪");
+    strcpy(vt_word.nnet_path, "/Users/daixiang/external/thirdlib/workdir_cn/final.ruoqi.mod");
+    vt_word.mask |= VT_WORD_USE_OUTSIDE_PHONE_MASK
+                | VT_WORD_LOCAL_CLASSIFY_CHECK_MASK;
+    VsysActivation_AddVtWord(handle, &vt_word);
+    
     std::thread thread([&]{
         while (loop) {
             VsysActivation_Control(handle, (rand() % 2) ? ACTIVATION_SET_STATE_AWAKE : ACTIVATION_SET_STATE_SLEEP);
             std::this_thread::sleep_for(std::chrono::milliseconds(rand() % 1000 + 1));
         }
     });
-    
+
     for (uint32_t i = 0; i < FRAME_SIZE * 100; i++) {
         while(pcm_in.good()){
             pcm_in.read(buff, FRAME_SIZE * 8 * sizeof(float));

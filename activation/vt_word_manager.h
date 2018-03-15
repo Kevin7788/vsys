@@ -44,9 +44,9 @@ private:
     
     bool vt_word_formation(const vt_word_t* vt_word, WordInfo& word_info);
     
-    uint32_t get_word_size(const std::string& phone);
+    uint32_t get_word_size(const std::string& phone, bool is_pinyin);
     
-    float adjust_score(float score, uint32_t word_size);
+    float get_score_param(float score, uint32_t word_size);
     
     WordType get_vt_type(word_type type);
     
@@ -62,15 +62,11 @@ private:
     
 private:
     std::vector<WordInfo> word_infos;
-    
     std::shared_ptr<Phoneme> phoneme;
-    
     std::mutex vt_mutex;
     
     vt_word_t* vt_words;
-    
     AcousticModel vt_model;
-    
     void* token;
 };
     

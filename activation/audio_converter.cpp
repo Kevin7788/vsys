@@ -20,7 +20,7 @@ int32_t AudioConverter::convert(void *input, uint32_t input_size, float **&outpu
             samples = input_size / (num_channels * sizeof(short));
             check_buffer(samples);
             for (uint32_t i = 0; i < num_mics; i++) {
-                for (uint32_t j = 0; j< samples; j++) {
+                for (uint32_t j = 0; j < samples; j++) {
                     buff[i][j] = data[mic_ids[i] + j * num_channels];
                 }
             }
@@ -31,7 +31,7 @@ int32_t AudioConverter::convert(void *input, uint32_t input_size, float **&outpu
             samples = input_size / (num_channels * sizeof(int24_t));
             check_buffer(samples);
             for(uint32_t i = 0; i < num_mics; i++){
-                for (uint32_t j = 0; j< samples; j++) {
+                for (uint32_t j = 0; j < samples; j++) {
                     buff[i][j] = data[mic_ids[i] + j * num_channels].toint() / 4.0f;
                 }
             }
@@ -42,7 +42,7 @@ int32_t AudioConverter::convert(void *input, uint32_t input_size, float **&outpu
             samples = input_size / (num_channels * sizeof(float));
             check_buffer(samples);
             for(uint32_t i = 0; i < num_mics; i++){
-                for (uint32_t j = 0; j< samples; j++) {
+                for (uint32_t j = 0; j < samples; j++) {
                     buff[i][j] = data[mic_ids[i] + j * num_channels] / 1024.0f;
                 }
             }
@@ -53,7 +53,7 @@ int32_t AudioConverter::convert(void *input, uint32_t input_size, float **&outpu
             samples = input_size / (num_channels * sizeof(float));
             check_buffer(samples);
             for(uint32_t i = 0; i < num_mics; i++){
-                for (uint32_t j = 0; j< samples; j++) {
+                for (uint32_t j = 0; j < samples; j++) {
                     buff[i][j] = data[mic_ids[i] + j * num_channels] * 32768.0f;
                 }
             }

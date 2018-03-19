@@ -63,11 +63,11 @@ int32_t VoiceActivation::init(const activation_param_t* param, const char* path,
     assert(param);
     
     if(!audio_is_valid_sample_rate(param->sample_rate)){
-        VSYS_DEBUGE("Invalid sample rate %d", param->sample_rate);
+        VSYS_DEBUGE("Unsupport sample rate %d", param->sample_rate);
         return -1;
     }
     if(!audio_is_valid_format(param->sample_size_bits)){
-        VSYS_DEBUGE("Invalid bit rate %d", param->sample_size_bits);
+        VSYS_DEBUGE("Unsupport bits per sample %d", param->sample_size_bits);
         return -1;
     }
     if(set_parameters(param) != 0){
@@ -138,7 +138,7 @@ int32_t VoiceActivation::set_parameters(const activation_param_t* param){
     if(param->mic_params != nullptr){
         for (uint32_t i = 0; i < num_mics; i++) {
             if(param->mic_params[i].id >= num_channels){
-                VSYS_DEBUGE("Invalid mic id %d, the max channel is %d", param->mic_params[i].id, num_channels);
+                VSYS_DEBUGE("Invalid mic id %d, expected id range [0, %d]", param->mic_params[i].id, num_channels - 1);
                 return -1;
             }
             mic_ids[i] = param->mic_params[i].id;
@@ -185,7 +185,7 @@ int32_t VoiceActivation::enter_vbv(){
         return -1;
     }
     
-    WordInfo pWordLst[2];
+    WordInfo pWordLst[1];
     pWordLst[0].iWordType = WORD_AWAKE ;
     strcpy(pWordLst[0].pWordContent_UTF8, "若琪");
     strcpy(pWordLst[0].pWordContent_PHONE, "r|l|r_B|l_B|# w o4|o4_E|## q|q_B|# i2|i2_E|##");

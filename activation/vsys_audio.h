@@ -11,6 +11,13 @@
 
 #include "vsys_types.h"
 
+static const char * const format_string_map[] = {
+    "AUDIO_FORMAT_PCM_16BIT",
+    "AUDIO_FORMAT_PCM_24BIT",
+    "AUDIO_FORMAT_PCM_32BIT",
+    "AUDIO_FORMAT_PCM_FLOAT", 
+};
+
 static inline bool audio_is_valid_sample_rate(uint32_t sample_rate){
     switch (sample_rate) {
         case AUDIO_SAMPLT_RATE_16K:
@@ -22,6 +29,8 @@ static inline bool audio_is_valid_sample_rate(uint32_t sample_rate){
 static inline bool audio_is_valid_format(uint32_t format){
     switch (format) {
         case AUDIO_FORMAT_ENCODING_PCM_16BIT:
+        case AUDIO_FORMAT_ENCODING_PCM_24BIT:
+        case AUDIO_FORMAT_ENCODING_PCM_32BIT:
         case AUDIO_FORMAT_ENCODING_PCM_FLOAT:
             return true;
     }
@@ -32,6 +41,9 @@ static inline uint32_t audio_bytes_per_sample(uint32_t format){
     switch (format) {
         case AUDIO_FORMAT_ENCODING_PCM_16BIT:
             return 2;
+        case AUDIO_FORMAT_ENCODING_PCM_24BIT:
+            return 3;
+        case AUDIO_FORMAT_ENCODING_PCM_32BIT:
         case AUDIO_FORMAT_ENCODING_PCM_FLOAT:
             return 4;
     }

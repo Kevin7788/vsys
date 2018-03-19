@@ -21,8 +21,8 @@ static inline bool audio_is_valid_sample_rate(uint32_t sample_rate){
 
 static inline bool audio_is_valid_format(uint32_t format){
     switch (format) {
-        case AUDIO_FORMAT_PCM_16_BIT:
-        case AUDIO_FORMAT_PCM_32F_BIT:
+        case AUDIO_FORMAT_ENCODING_PCM_16BIT:
+        case AUDIO_FORMAT_ENCODING_PCM_FLOAT:
             return true;
     }
     return false;
@@ -30,9 +30,9 @@ static inline bool audio_is_valid_format(uint32_t format){
 
 static inline uint32_t audio_bytes_per_sample(uint32_t format){
     switch (format) {
-        case AUDIO_FORMAT_PCM_16_BIT:
+        case AUDIO_FORMAT_ENCODING_PCM_16BIT:
             return 2;
-        case AUDIO_FORMAT_PCM_32F_BIT:
+        case AUDIO_FORMAT_ENCODING_PCM_FLOAT:
             return 4;
     }
     return 0;

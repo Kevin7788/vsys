@@ -62,7 +62,7 @@ void test_activation(){
     activation_param_t param;
     param.mic_params = channel_param;
     param.sample_rate = AUDIO_SAMPLT_RATE_16K;
-    param.sample_size_bits = AUDIO_FORMAT_PCM_32F_BIT;
+    param.sample_size_bits = AUDIO_FORMAT_ENCODING_PCM_FLOAT;
     param.num_mics = 8;
     param.num_channels = 8;
     param.mask |= MIC_PARAM_POSTION_MASK;

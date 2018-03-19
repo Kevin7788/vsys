@@ -13,10 +13,10 @@
 #include <cstddef>
 
 enum {
-    AUDIO_FORMAT_PCM_16_BIT         = 0x1,
-    AUDIO_FORMAT_PCM_24_BIT         = 0x2,
-    AUDIO_FORMAT_PCM_32_BIT         = 0x3,
-    AUDIO_FORMAT_PCM_32F_BIT        = 0x4,
+    AUDIO_FORMAT_ENCODING_PCM_16BIT         = 0x1,
+    AUDIO_FORMAT_ENCODING_PCM_24BIT         = 0x2,
+    AUDIO_FORMAT_ENCODING_PCM_32BIT         = 0x3,
+    AUDIO_FORMAT_ENCODING_PCM_FLOAT         = 0x4,
 };
 
 enum {

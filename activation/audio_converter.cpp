@@ -15,7 +15,7 @@ int32_t AudioConverter::convert(void *input, uint32_t input_size, float **&outpu
     
     uint32_t samples = 0;
     switch (format) {
-        case AUDIO_FORMAT_PCM_16_BIT:{
+        case AUDIO_FORMAT_ENCODING_PCM_16BIT:{
             short *data = (short *)input;
             samples = input_size / (num_channels * sizeof(short));
             check_buffer(samples);
@@ -26,7 +26,7 @@ int32_t AudioConverter::convert(void *input, uint32_t input_size, float **&outpu
             }
             break;
         }
-        case AUDIO_FORMAT_PCM_24_BIT:{
+        case AUDIO_FORMAT_ENCODING_PCM_24BIT:{
             int24_t *data = (int24_t *)input;
             samples = input_size / (num_channels * sizeof(int24_t));
             check_buffer(samples);
@@ -37,7 +37,7 @@ int32_t AudioConverter::convert(void *input, uint32_t input_size, float **&outpu
             }
             break;
         }
-        case AUDIO_FORMAT_PCM_32_BIT:{
+        case AUDIO_FORMAT_ENCODING_PCM_32BIT:{
             float *data = (float *)input;
             samples = input_size / (num_channels * sizeof(float));
             check_buffer(samples);
@@ -48,7 +48,7 @@ int32_t AudioConverter::convert(void *input, uint32_t input_size, float **&outpu
             }
             break;
         }
-        case AUDIO_FORMAT_PCM_32F_BIT:{
+        case AUDIO_FORMAT_ENCODING_PCM_FLOAT:{
             float *data = (float *)input;
             samples = input_size / (num_channels * sizeof(float));
             check_buffer(samples);

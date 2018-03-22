@@ -188,6 +188,7 @@
 		5B8F86E32028B50D004A883C /* buf_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B8F86E02028B50C004A883C /* buf_manager.h */; };
 		5BA3DDD62063552E00AF4F15 /* wav.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BA3DDD52063552D00AF4F15 /* wav.cpp */; };
 		5BA3DDD82063555D00AF4F15 /* mfcc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BA3DDD72063555D00AF4F15 /* mfcc.cpp */; };
+		5BA3DDEA206379BE00AF4F15 /* simple_wave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BA3DDE9206379BE00AF4F15 /* simple_wave.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -396,6 +397,9 @@
 		5BA3DDD42063550600AF4F15 /* mfcc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mfcc.h; sourceTree = "<group>"; };
 		5BA3DDD52063552D00AF4F15 /* wav.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = wav.cpp; sourceTree = "<group>"; };
 		5BA3DDD72063555D00AF4F15 /* mfcc.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mfcc.cpp; sourceTree = "<group>"; };
+		5BA3DDDD2063798700AF4F15 /* libutil.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libutil.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BA3DDE8206379B100AF4F15 /* simple_wave.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = simple_wave.h; sourceTree = "<group>"; };
+		5BA3DDE9206379BE00AF4F15 /* simple_wave.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = simple_wave.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -456,6 +460,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5BA3DDDA2063798700AF4F15 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -467,6 +478,7 @@
 				5B3970CA2028057100B41305 /* r2vt4 */,
 				5B3971B620280A8200B41305 /* speex */,
 				5B8F86CF2028968B004A883C /* common_audio */,
+				5BA3DDDE2063798700AF4F15 /* util */,
 				5B397077202800CF00B41305 /* Products */,
 				5B39719F2028061500B41305 /* Frameworks */,
 			);
@@ -482,6 +494,7 @@
 				5B39729320283B5600B41305 /* libr2vt5.a */,
 				5B3972A220287A7E00B41305 /* libaudio_processing.a */,
 				5B8F86CE2028968B004A883C /* libcommon_audio.a */,
+				5BA3DDDD2063798700AF4F15 /* libutil.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -919,6 +932,15 @@
 			path = audio_processing;
 			sourceTree = "<group>";
 		};
+		5BA3DDDE2063798700AF4F15 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				5BA3DDE8206379B100AF4F15 /* simple_wave.h */,
+				5BA3DDE9206379BE00AF4F15 /* simple_wave.cpp */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1061,6 +1083,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5BA3DDDB2063798700AF4F15 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -1183,6 +1212,23 @@
 			productReference = 5B8F86CE2028968B004A883C /* libcommon_audio.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		5BA3DDDC2063798700AF4F15 /* util */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5BA3DDE52063798700AF4F15 /* Build configuration list for PBXNativeTarget "util" */;
+			buildPhases = (
+				5BA3DDD92063798700AF4F15 /* Sources */,
+				5BA3DDDA2063798700AF4F15 /* Frameworks */,
+				5BA3DDDB2063798700AF4F15 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = util;
+			productName = util;
+			productReference = 5BA3DDDD2063798700AF4F15 /* libutil.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1220,6 +1266,10 @@
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 					};
+					5BA3DDDC2063798700AF4F15 = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 5B397071202800CF00B41305 /* Build configuration list for PBXProject "vsys" */;
@@ -1241,6 +1291,7 @@
 				5B39729220283B5600B41305 /* r2vt5 */,
 				5B3972A120287A7E00B41305 /* audio_processing */,
 				5B8F86CD2028968B004A883C /* common_audio */,
+				5BA3DDDC2063798700AF4F15 /* util */,
 			);
 		};
 /* End PBXProject section */
@@ -1368,6 +1419,14 @@
 			files = (
 				5B8F86DC202896D2004A883C /* audio_processing.cpp in Sources */,
 				5B8F86E12028B50D004A883C /* audio_converter.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BA3DDD92063798700AF4F15 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BA3DDEA206379BE00AF4F15 /* simple_wave.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1631,6 +1690,28 @@
 			};
 			name = Release;
 		};
+		5BA3DDE62063798700AF4F15 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5BA3DDE72063798700AF4F15 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1702,6 +1783,15 @@
 			buildConfigurations = (
 				5B8F86D62028968B004A883C /* Debug */,
 				5B8F86D72028968B004A883C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5BA3DDE52063798700AF4F15 /* Build configuration list for PBXNativeTarget "util" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BA3DDE62063798700AF4F15 /* Debug */,
+				5BA3DDE72063798700AF4F15 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

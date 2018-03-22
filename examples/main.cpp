@@ -220,8 +220,8 @@ void test_mel(){
 int main(int argc, const char * argv[]) {
     std::chrono::steady_clock::time_point tp = std::chrono::steady_clock::now();
 //    test_audio_processing();
-    test_activation();
-//    test_mel();
+//    test_activation();
+    test_mel();
     auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - tp);
     VSYS_DEBUGI("已运行%lld毫秒\n", elapsed.count());
     return 0;

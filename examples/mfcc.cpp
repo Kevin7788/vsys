@@ -47,11 +47,9 @@ void MFCC(const short* waveData, int numSamples, int sampleRate){
     //setBlackManWindow(frameWindow);
     // 帧操作
     for(int i = 0; i < numFrames; i++){
-        if(TORPINT && i == PRINT_FRAME) print_Array(waveData, FRAMES_PER_BUFFER, "/Users/daixiang/Desktop/vsys/exp/wavData.txt");
-        if(TORPINT && i == PRINT_FRAME) print_Array(waveData, FRAMES_PER_BUFFER, "/Users/daixiang/Desktop/vsys/exp/spreemp.txt");
         int j;
         // 加窗操作
-        int seg_shift = (i - 1) * NOT_OVERLAP;
+        int seg_shift = i * NOT_OVERLAP;
         for(j = 0; j < FRAMES_PER_BUFFER && (seg_shift + j) < numSamples; j++){
             afterWin[j] = spreemp[seg_shift + j] * frameWindow[j];
         }

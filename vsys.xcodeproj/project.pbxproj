@@ -186,6 +186,8 @@
 		5B8F86E12028B50D004A883C /* audio_converter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B8F86DE2028B50C004A883C /* audio_converter.cpp */; };
 		5B8F86E22028B50D004A883C /* audio_converter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B8F86DF2028B50C004A883C /* audio_converter.h */; };
 		5B8F86E32028B50D004A883C /* buf_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B8F86E02028B50C004A883C /* buf_manager.h */; };
+		5BA3DDD62063552E00AF4F15 /* wav.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BA3DDD52063552D00AF4F15 /* wav.cpp */; };
+		5BA3DDD82063555D00AF4F15 /* mfcc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BA3DDD72063555D00AF4F15 /* mfcc.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -390,6 +392,10 @@
 		5B8F86DE2028B50C004A883C /* audio_converter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = audio_converter.cpp; path = activation/audio_converter.cpp; sourceTree = SOURCE_ROOT; };
 		5B8F86DF2028B50C004A883C /* audio_converter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = audio_converter.h; path = activation/audio_converter.h; sourceTree = SOURCE_ROOT; };
 		5B8F86E02028B50C004A883C /* buf_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = buf_manager.h; path = activation/buf_manager.h; sourceTree = SOURCE_ROOT; };
+		5BA3DDD3206354D800AF4F15 /* wav.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wav.h; sourceTree = "<group>"; };
+		5BA3DDD42063550600AF4F15 /* mfcc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mfcc.h; sourceTree = "<group>"; };
+		5BA3DDD52063552D00AF4F15 /* wav.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = wav.cpp; sourceTree = "<group>"; };
+		5BA3DDD72063555D00AF4F15 /* mfcc.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mfcc.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -484,6 +490,10 @@
 			isa = PBXGroup;
 			children = (
 				5B3970C3202801A400B41305 /* main.cpp */,
+				5BA3DDD3206354D800AF4F15 /* wav.h */,
+				5BA3DDD42063550600AF4F15 /* mfcc.h */,
+				5BA3DDD52063552D00AF4F15 /* wav.cpp */,
+				5BA3DDD72063555D00AF4F15 /* mfcc.cpp */,
 			);
 			path = examples;
 			sourceTree = "<group>";
@@ -1240,7 +1250,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BA3DDD62063552E00AF4F15 /* wav.cpp in Sources */,
 				5B3970C4202801A400B41305 /* main.cpp in Sources */,
+				5BA3DDD82063555D00AF4F15 /* mfcc.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,7 @@
 		<key>activation.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>2</integer>
 		</dict>
 		<key>common_audio.xcscheme</key>
 		<dict>
@@ -17,17 +17,17 @@
 		<key>r2vt4.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>3</integer>
 		</dict>
 		<key>speex.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>4</integer>
 		</dict>
 		<key>test_activation.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>6</integer>
 		</dict>
 		<key>test_audio_processing.xcscheme</key>
 		<dict>
@@ -42,10 +42,12 @@
 		<key>util.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>5</integer>
 		</dict>
 		<key>vsys.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
@@ -63,6 +65,11 @@
 			<true/>
 		</dict>
 		<key>5B3972A120287A7E00B41305</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5B89A2CA2066148400C6CD20</key>
 		<dict>
 			<key>primary</key>
 			<true/>

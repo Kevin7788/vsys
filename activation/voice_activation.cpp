@@ -24,7 +24,7 @@
 
 namespace vsys {
     
-std::ofstream pcm_out("/Users/daixiang/pcm_out.pcm", std::ios::out | std::ios::binary);
+//std::ofstream output_stream("/Users/daixiang/Desktop/vsys/data/sounds/baomao_M_0020.16000.1.16bit.pcm", std::ios::out | std::ios::binary);
 VoiceActivation::VoiceActivation():mic_ids(nullptr), mic_pos(nullptr), mic_delay(nullptr), buff(nullptr),
                                 data_nonew(nullptr), bf_input(nullptr), bf_output(nullptr), vad_input(nullptr), vad_output(nullptr),
                                 bf_handle(0), vbv_handle(0), vad_handle(0), buff_offset(0), bf_input_offset(0), bf_output_total(0),

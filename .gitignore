@@ -6,3 +6,5 @@ Makefile
 *.mk
 *.pcm
 *.zip
+!data/sounds/baomao_M_0020.16000.8.16bit.pcm
+!data/sounds/baomao_M_0020.16000.8.float.pcm

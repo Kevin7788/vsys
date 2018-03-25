@@ -192,8 +192,6 @@
 		5B89A2D22066157900C6CD20 /* libspeex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3971B520280A8200B41305 /* libspeex.a */; };
 		5B89A2D4206615F700C6CD20 /* libfftw3f.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B89A2D3206615F700C6CD20 /* libfftw3f.a */; };
 		5B89A2DC206616C600C6CD20 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B89A2DB206616C600C6CD20 /* main.cpp */; };
-		5B89A2E0206616D400C6CD20 /* wav.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BA3DDD52063552D00AF4F15 /* wav.cpp */; };
-		5B89A2E1206616D400C6CD20 /* mfcc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BA3DDD72063555D00AF4F15 /* mfcc.cpp */; };
 		5B89A2E22066176B00C6CD20 /* libfftw3f.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B89A2D3206615F700C6CD20 /* libfftw3f.a */; };
 		5B8F86DC202896D2004A883C /* audio_processing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B8F86DB202896D2004A883C /* audio_processing.cpp */; };
 		5B8F86DD20289906004A883C /* libcommon_audio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8F86CE2028968B004A883C /* libcommon_audio.a */; };
@@ -438,10 +436,6 @@
 		5B8F86DE2028B50C004A883C /* audio_converter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = audio_converter.cpp; path = activation/audio_converter.cpp; sourceTree = SOURCE_ROOT; };
 		5B8F86DF2028B50C004A883C /* audio_converter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = audio_converter.h; path = activation/audio_converter.h; sourceTree = SOURCE_ROOT; };
 		5B8F86E02028B50C004A883C /* buf_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = buf_manager.h; path = activation/buf_manager.h; sourceTree = SOURCE_ROOT; };
-		5BA3DDD3206354D800AF4F15 /* wav.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wav.h; sourceTree = "<group>"; };
-		5BA3DDD42063550600AF4F15 /* mfcc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mfcc.h; sourceTree = "<group>"; };
-		5BA3DDD52063552D00AF4F15 /* wav.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = wav.cpp; sourceTree = "<group>"; };
-		5BA3DDD72063555D00AF4F15 /* mfcc.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mfcc.cpp; sourceTree = "<group>"; };
 		5BA3DDDD2063798700AF4F15 /* libutil.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libutil.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BA3DDE8206379B100AF4F15 /* simple_wave.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = simple_wave.h; sourceTree = "<group>"; };
 		5BA3DDE9206379BE00AF4F15 /* simple_wave.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = simple_wave.cpp; sourceTree = "<group>"; };
@@ -998,10 +992,6 @@
 		5B89A2DA206616C600C6CD20 /* test_mel */ = {
 			isa = PBXGroup;
 			children = (
-				5BA3DDD3206354D800AF4F15 /* wav.h */,
-				5BA3DDD42063550600AF4F15 /* mfcc.h */,
-				5BA3DDD52063552D00AF4F15 /* wav.cpp */,
-				5BA3DDD72063555D00AF4F15 /* mfcc.cpp */,
 				5B89A2DB206616C600C6CD20 /* main.cpp */,
 			);
 			path = test_mel;
@@ -1594,9 +1584,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B89A2E0206616D400C6CD20 /* wav.cpp in Sources */,
 				5B89A2DC206616C600C6CD20 /* main.cpp in Sources */,
-				5B89A2E1206616D400C6CD20 /* mfcc.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

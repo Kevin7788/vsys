@@ -36,7 +36,7 @@ VoiceActivation::VoiceActivation():mic_ids(nullptr), mic_pos(nullptr), mic_delay
     memset(phone_table, 0, sizeof(phone_table));
     memset(sl_info, 0, sizeof(float) * 2);
                                     
-    __cod = new r2mem_cod(r2ad_cod_pcm);
+    __cod = std::make_shared<r2mem_cod>(r2ad_cod_pcm);
                                     
     event_hub = std::make_shared<EventHub>();
 }
@@ -44,7 +44,6 @@ VoiceActivation::VoiceActivation():mic_ids(nullptr), mic_pos(nullptr), mic_delay
 VoiceActivation::~VoiceActivation(){
     exit_vbv();
     
-    delete __cod;
     delete[] mic_ids;
     delete[] mic_pos;
     delete[] mic_delay;
@@ -185,7 +184,7 @@ int32_t VoiceActivation::enter_vbv(){
         return -1;
     }
     
-    WordInfo pWordLst[1];
+    WordInfo pWordLst[2];
     pWordLst[0].iWordType = WORD_AWAKE ;
     strcpy(pWordLst[0].pWordContent_UTF8, "若琪");
     strcpy(pWordLst[0].pWordContent_PHONE, "r|l|r_B|l_B|# w o4|o4_E|## q|q_B|# i2|i2_E|##");
@@ -199,7 +198,7 @@ int32_t VoiceActivation::enter_vbv(){
     pWordLst[0].fClassifyShield = -0.3f ;
     strcpy(pWordLst[0].pLocalClassifyNnetPath, nnet_path_ruoqi);
     
-//    sync_vt_word(pWordLst, 1);
+    //sync_vt_word(pWordLst, 1);
 
     if(!(vad_handle = VD_NewVad(1))){
         VSYS_DEBUGE("Failed to create vad inst");
@@ -371,13 +370,14 @@ int32_t VoiceActivation::processfrm(const float** input, const size_t& input_siz
 
     if(VAD_ON(vad_result)){
         VSYS_DEBUGI("VAD ON");
+        vad_flag = vad_result;
+
         awaked = false;
         canceled = false;
-        vad_flag = vad_result;
         __cod->reset();
-        
         if(awake){
             awaked = true;
+            need_asr = true;
             send_event(VOICE_EVENT_VAD_COMING);
             send_event(VOICE_EVENT_VT_INFO);
         }
@@ -409,7 +409,7 @@ int32_t VoiceActivation::processfrm(const float** input, const size_t& input_siz
                 data_output = true;
                 if(!vad_enable) set_vad_frame_num(2000);
                 
-                 VSYS_DEBUGD("Vad start with !awaked");
+                VSYS_DEBUGD("Vad start with !awaked");
                 send_event(VOICE_EVENT_VAD_START);
             }
         }
@@ -417,11 +417,11 @@ int32_t VoiceActivation::processfrm(const float** input, const size_t& input_siz
             if(!canceled){
                 if(vad_enable && __cod->istoolong()){
                     canceled = true;
-                    VSYS_DEBUGI("Canceled, because the vad was too long");
+                    VSYS_DEBUGI("Cancel since asr too long");
                 }
                 if(!awaked && !need_asr){
                     canceled = true;
-                    VSYS_DEBUGI("Canceled, because there was no asr flag");
+                    VSYS_DEBUGI("Cancel since no asr flag");
                 }
                 if(canceled){
                     if(!vad_enable){
@@ -450,19 +450,15 @@ int32_t VoiceActivation::processfrm(const float** input, const size_t& input_siz
     }
     if(VAD_OFF(vad_result)){
         VSYS_DEBUGI("VAD OFF");
+        vad_flag = 0;
+
+        if(vad_enable) 
+            need_asr = false;
+
         if(vad_enable && data_output && !canceled){
             send_event(VOICE_EVENT_VAD_END);
         }
-        canceled = false;
-        if(awaked){
-            __cod->pause();
-            __cod->resume();
-        }
-        if(vad_enable){
-            need_asr = false;
-            data_output = false;
-            vad_flag = 0;
-        }
+        data_output = false;
     }
     return 0;
 }

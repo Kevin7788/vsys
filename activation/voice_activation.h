@@ -97,13 +97,13 @@ private:
     r2ssp_handle bf_handle;
     r2_vbv_htask vbv_handle;
     VD_HANDLE vad_handle;
-    r2mem_cod* __cod;
     
     float sl_info[2];
     
     WordInfo* pWordInfo;
     WordDetInfo* pWordDetInfo;
     
+    std::shared_ptr<r2mem_cod> __cod;
     std::shared_ptr<EventHub> event_hub;
     std::shared_ptr<VtWordManager> vt_word_manager;
     std::shared_ptr<AudioConverter> audio_converter;

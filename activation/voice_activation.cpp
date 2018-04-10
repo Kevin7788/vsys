@@ -36,8 +36,6 @@ VoiceActivation::VoiceActivation():mic_ids(nullptr), mic_pos(nullptr), mic_delay
     memset(phone_table, 0, sizeof(phone_table));
     memset(sl_info, 0, sizeof(float) * 2);
                                     
-    __cod = std::make_shared<r2mem_cod>(r2ad_cod_pcm);
-                                    
     event_hub = std::make_shared<EventHub>();
 }
     
@@ -96,6 +94,8 @@ int32_t VoiceActivation::init(const activation_param_t* param, const char* path,
         create_vt_manager(MODEL_CTC);
     }
     nnet_stream.close();
+
+    __cod = std::make_shared<r2mem_cod>(sample_size_bits);
     
     audio_converter = std::make_shared<AudioConverter>(sample_size_bits, num_mics, num_channels, mic_ids);
     
@@ -198,7 +198,7 @@ int32_t VoiceActivation::enter_vbv(){
     pWordLst[0].fClassifyShield = -0.3f ;
     strcpy(pWordLst[0].pLocalClassifyNnetPath, nnet_path_ruoqi);
     
-    //sync_vt_word(pWordLst, 1);
+    sync_vt_word(pWordLst, 1);
 
     if(!(vad_handle = VD_NewVad(1))){
         VSYS_DEBUGE("Failed to create vad inst");
@@ -374,6 +374,7 @@ int32_t VoiceActivation::processfrm(const float** input, const size_t& input_siz
 
         awaked = false;
         canceled = false;
+        data_output = false;
         __cod->reset();
         if(awake){
             awaked = true;

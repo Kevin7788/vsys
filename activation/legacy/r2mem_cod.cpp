@@ -26,10 +26,7 @@ char* r2_new_ar1(int size,int dim1){
     return pData ;
 }
 
-r2mem_cod::r2mem_cod(r2cod_type iCodeType){
-  
-  m_iCodeType = iCodeType ;
-  
+r2mem_cod::r2mem_cod(uint32_t format){
   //Raw
   m_iLen_In = 0 ;
   m_iLen_In_Total = R2_AUDIO_SAMPLE_RATE * 20 ;
@@ -58,6 +55,7 @@ r2mem_cod::r2mem_cod(r2cod_type iCodeType){
   m_fShield_Am = 1.0f ;
   m_iLen_Am = m_iLen_Frm_Cod * 3 ;
   
+  scaling = (format == AUDIO_FORMAT_ENCODING_PCM_16BIT || format == AUDIO_FORMAT_ENCODING_PCM_24BIT) ? 32768 : 16384;
 }
 
 
@@ -165,18 +163,8 @@ int r2mem_cod::processdata(){
       }
     }
     
-    if (m_iCodeType == r2ad_cod_opu) {
-//      iLen_Cod = opus_encode_float(m_hEngine_Cod, m_pData_In + m_iLen_Cod , m_iLen_Frm_Cod,
-//                                   m_pData_Cod + 1, m_iLen_Frm_Cod - 1 );
-//
-//      m_pData_Cod[0] = iLen_Cod ;
-//      pData_Cod = (char*)m_pData_Cod ;
-//      iLen_Cod = iLen_Cod + 1;
-      
-    }else{
       pData_Cod = (char*)(m_pData_In + m_iLen_Cod);
       iLen_Cod = sizeof(float) * m_iLen_Frm_Cod ;
-    }
     
     //store
     if (m_iLen_Out + iLen_Cod > m_iLen_Out_Total)	{
@@ -190,7 +178,7 @@ int r2mem_cod::processdata(){
       float *temp = (float *)pData_Cod;
       short *buff = (short *)(m_pData_Out + m_iLen_Out);
       for(int i = 0; i < m_iLen_Frm_Cod; i++){
-          buff[i] = (short)(temp[i] * 16384);
+          buff[i] = (short)(temp[i] * scaling);
       }
       iLen_Cod /= 2;
 //    memcpy(m_pData_Out + m_iLen_Out, pData_Cod, sizeof(char) * iLen_Cod) ;

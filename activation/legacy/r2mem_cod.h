@@ -1,15 +1,12 @@
 #ifndef R2_MEM_COD_H
 #define R2_MEM_COD_H
 
-enum r2cod_type{
-  r2ad_cod_opu = 1,
-  r2ad_cod_pcm
-};
+#include "vsys_types.h"
 
 class r2mem_cod
 {
 public:
-  r2mem_cod(r2cod_type iCodeType);
+  r2mem_cod(uint32_t format);
 public:
   ~r2mem_cod(void);
   
@@ -32,7 +29,7 @@ public:
   
 public:
   
-  r2cod_type m_iCodeType ;
+  uint32_t scaling;
   
   int m_iLen_In ;
   int m_iLen_In_Total ;

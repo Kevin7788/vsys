@@ -281,7 +281,7 @@
 		5B3970E02028060000B41305 /* zcomp_lstm_cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zcomp_lstm_cell.h; sourceTree = "<group>"; };
 		5B3970E12028060000B41305 /* znnet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = znnet.cpp; sourceTree = "<group>"; };
 		5B3970E22028060000B41305 /* znnet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = znnet.h; sourceTree = "<group>"; };
-		5B3970E32028060000B41305 /* zmacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zmacro.h; path = ../../../external/r2slv4/r2vt4/src/zmacro.h; sourceTree = "<group>"; };
+		5B3970E32028060000B41305 /* zmacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zmacro.h; path = ../../../workspace/r2slv4/r2vt4/src/zmacro.h; sourceTree = "<group>"; };
 		5B3970E52028060000B41305 /* fa_fir.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fa_fir.cpp; sourceTree = "<group>"; };
 		5B3970E62028060000B41305 /* fa_fir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fa_fir.h; sourceTree = "<group>"; };
 		5B3970E72028060000B41305 /* fa_resample.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fa_resample.cpp; sourceTree = "<group>"; };
@@ -300,7 +300,7 @@
 		5B3970F52028060000B41305 /* zslmem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zslmem.h; sourceTree = "<group>"; };
 		5B3970F72028060000B41305 /* zaudapi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zaudapi.cpp; sourceTree = "<group>"; };
 		5B3970F82028060000B41305 /* zaudapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zaudapi.h; sourceTree = "<group>"; };
-		5B3970F92028060000B41305 /* zutil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = zutil.cpp; path = ../../../external/r2slv4/r2vt4/src/zutil.cpp; sourceTree = "<group>"; };
+		5B3970F92028060000B41305 /* zutil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = zutil.cpp; path = ../../../workspace/r2slv4/r2vt4/src/zutil.cpp; sourceTree = "<group>"; };
 		5B3970FB2028060000B41305 /* zcmat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zcmat.cpp; sourceTree = "<group>"; };
 		5B3970FC2028060000B41305 /* zcmat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zcmat.h; sourceTree = "<group>"; };
 		5B3970FD2028060000B41305 /* zmat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zmat.cpp; sourceTree = "<group>"; };
@@ -325,7 +325,7 @@
 		5B3971132028060000B41305 /* zcfapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zcfapi.h; sourceTree = "<group>"; };
 		5B3971142028060000B41305 /* zcfmem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zcfmem.cpp; sourceTree = "<group>"; };
 		5B3971152028060000B41305 /* zcfmem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zcfmem.h; sourceTree = "<group>"; };
-		5B3971162028060000B41305 /* zutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zutil.h; path = ../../../external/r2slv4/r2vt4/src/zutil.h; sourceTree = "<group>"; };
+		5B3971162028060000B41305 /* zutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zutil.h; path = ../../../workspace/r2slv4/r2vt4/src/zutil.h; sourceTree = "<group>"; };
 		5B3971182028060000B41305 /* zg2papi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zg2papi.cpp; sourceTree = "<group>"; };
 		5B3971192028060000B41305 /* zg2papi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zg2papi.h; sourceTree = "<group>"; };
 		5B39711B2028060100B41305 /* zfftr2c.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zfftr2c.cpp; sourceTree = "<group>"; };
@@ -352,7 +352,7 @@
 		5B3971332028060100B41305 /* zvbvapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zvbvapi.h; sourceTree = "<group>"; };
 		5B3971342028060100B41305 /* zvbvmem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zvbvmem.cpp; sourceTree = "<group>"; };
 		5B3971352028060100B41305 /* zvbvmem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zvbvmem.h; sourceTree = "<group>"; };
-		5B3971362028060100B41305 /* zmath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zmath.h; path = ../../../external/r2slv4/r2vt4/src/zmath.h; sourceTree = "<group>"; };
+		5B3971362028060100B41305 /* zmath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zmath.h; path = ../../../workspace/r2slv4/r2vt4/src/zmath.h; sourceTree = "<group>"; };
 		5B3971382028060100B41305 /* zfea1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zfea1.cpp; sourceTree = "<group>"; };
 		5B3971392028060100B41305 /* zfea1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfea1.h; sourceTree = "<group>"; };
 		5B39713A2028060100B41305 /* zfea2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zfea2.cpp; sourceTree = "<group>"; };
@@ -361,11 +361,11 @@
 		5B39713D2028060100B41305 /* zfilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfilter.h; sourceTree = "<group>"; };
 		5B39713F2028060100B41305 /* zbuff.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zbuff.cpp; sourceTree = "<group>"; };
 		5B3971402028060100B41305 /* zbuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zbuff.h; sourceTree = "<group>"; };
-		5B3971A12028063400B41305 /* libztvad.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libztvad.a; path = ../../external/thirdlib/mac/lib/libztvad.a; sourceTree = "<group>"; };
-		5B3971A22028063400B41305 /* libmkl_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmkl_core.a; path = ../../external/thirdlib/mac/lib/libmkl_core.a; sourceTree = "<group>"; };
-		5B3971A32028063400B41305 /* libr2ssp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libr2ssp.a; path = ../../external/thirdlib/mac/lib/libr2ssp.a; sourceTree = "<group>"; };
-		5B3971A42028063500B41305 /* libmkl_sequential.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmkl_sequential.a; path = ../../external/thirdlib/mac/lib/libmkl_sequential.a; sourceTree = "<group>"; };
-		5B3971A52028063500B41305 /* libmkl_intel_lp64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmkl_intel_lp64.a; path = ../../external/thirdlib/mac/lib/libmkl_intel_lp64.a; sourceTree = "<group>"; };
+		5B3971A12028063400B41305 /* libztvad.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libztvad.a; path = ../../workspace/thirdlib/mac/lib/libztvad.a; sourceTree = "<group>"; };
+		5B3971A22028063400B41305 /* libmkl_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmkl_core.a; path = ../../workspace/thirdlib/mac/lib/libmkl_core.a; sourceTree = "<group>"; };
+		5B3971A32028063400B41305 /* libr2ssp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libr2ssp.a; path = ../../workspace/thirdlib/mac/lib/libr2ssp.a; sourceTree = "<group>"; };
+		5B3971A42028063500B41305 /* libmkl_sequential.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmkl_sequential.a; path = ../../workspace/thirdlib/mac/lib/libmkl_sequential.a; sourceTree = "<group>"; };
+		5B3971A52028063500B41305 /* libmkl_intel_lp64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmkl_intel_lp64.a; path = ../../workspace/thirdlib/mac/lib/libmkl_intel_lp64.a; sourceTree = "<group>"; };
 		5B3971B520280A8200B41305 /* libspeex.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libspeex.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3971F420280AC100B41305 /* speex_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = speex_buffer.h; sourceTree = "<group>"; };
 		5B3971F520280AC100B41305 /* speex_echo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = speex_echo.h; sourceTree = "<group>"; };
@@ -427,7 +427,7 @@
 		5B89A2BB206612B400C6CD20 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		5B89A2CB2066148400C6CD20 /* test_audio_processing */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test_audio_processing; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B89A2CD2066148400C6CD20 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		5B89A2D3206615F700C6CD20 /* libfftw3f.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfftw3f.a; path = external/lib/libfftw3f.a; sourceTree = "<group>"; };
+		5B89A2D3206615F700C6CD20 /* libfftw3f.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfftw3f.a; path = workspace/lib/libfftw3f.a; sourceTree = "<group>"; };
 		5B89A2D9206616C600C6CD20 /* test_mel */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test_mel; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B89A2DB206616C600C6CD20 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		5B8F86CE2028968B004A883C /* libcommon_audio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcommon_audio.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -678,7 +678,7 @@
 				5B3970E22028060000B41305 /* znnet.h */,
 			);
 			name = dnn;
-			path = ../../../external/r2slv4/r2vt4/src/dnn;
+			path = ../../../workspace/r2slv4/r2vt4/src/dnn;
 			sourceTree = "<group>";
 		};
 		5B3970E42028060000B41305 /* rs */ = {
@@ -696,7 +696,7 @@
 				5B3970EE2028060000B41305 /* zrssto.h */,
 			);
 			name = rs;
-			path = ../../../external/r2slv4/r2vt4/src/rs;
+			path = ../../../workspace/r2slv4/r2vt4/src/rs;
 			sourceTree = "<group>";
 		};
 		5B3970EF2028060000B41305 /* sl */ = {
@@ -710,7 +710,7 @@
 				5B3970F52028060000B41305 /* zslmem.h */,
 			);
 			name = sl;
-			path = ../../../external/r2slv4/r2vt4/src/sl;
+			path = ../../../workspace/r2slv4/r2vt4/src/sl;
 			sourceTree = "<group>";
 		};
 		5B3970F62028060000B41305 /* aud */ = {
@@ -720,7 +720,7 @@
 				5B3970F82028060000B41305 /* zaudapi.h */,
 			);
 			name = aud;
-			path = ../../../external/r2slv4/r2vt4/src/aud;
+			path = ../../../workspace/r2slv4/r2vt4/src/aud;
 			sourceTree = "<group>";
 		};
 		5B3970FA2028060000B41305 /* mat */ = {
@@ -736,7 +736,7 @@
 				5B3971022028060000B41305 /* zvec.h */,
 			);
 			name = mat;
-			path = ../../../external/r2slv4/r2vt4/src/mat;
+			path = ../../../workspace/r2slv4/r2vt4/src/mat;
 			sourceTree = "<group>";
 		};
 		5B3971032028060000B41305 /* vt */ = {
@@ -751,7 +751,7 @@
 				5B3971102028060000B41305 /* zvtsto.h */,
 			);
 			name = vt;
-			path = ../../../external/r2slv4/r2vt4/src/vt;
+			path = ../../../workspace/r2slv4/r2vt4/src/vt;
 			sourceTree = "<group>";
 		};
 		5B3971042028060000B41305 /* dep */ = {
@@ -776,7 +776,7 @@
 				5B3971152028060000B41305 /* zcfmem.h */,
 			);
 			name = cf;
-			path = ../../../external/r2slv4/r2vt4/src/cf;
+			path = ../../../workspace/r2slv4/r2vt4/src/cf;
 			sourceTree = "<group>";
 		};
 		5B3971172028060000B41305 /* g2p */ = {
@@ -786,7 +786,7 @@
 				5B3971192028060000B41305 /* zg2papi.h */,
 			);
 			name = g2p;
-			path = ../../../external/r2slv4/r2vt4/src/g2p;
+			path = ../../../workspace/r2slv4/r2vt4/src/g2p;
 			sourceTree = "<group>";
 		};
 		5B39711A2028060100B41305 /* fft */ = {
@@ -798,7 +798,7 @@
 				5B39711E2028060100B41305 /* zfftr2r.h */,
 			);
 			name = fft;
-			path = ../../../external/r2slv4/r2vt4/src/fft;
+			path = ../../../workspace/r2slv4/r2vt4/src/fft;
 			sourceTree = "<group>";
 		};
 		5B39711F2028060100B41305 /* io */ = {
@@ -810,7 +810,7 @@
 				5B3971232028060100B41305 /* zoutput.h */,
 			);
 			name = io;
-			path = ../../../external/r2slv4/r2vt4/src/io;
+			path = ../../../workspace/r2slv4/r2vt4/src/io;
 			sourceTree = "<group>";
 		};
 		5B3971242028060100B41305 /* vbv */ = {
@@ -823,7 +823,7 @@
 				5B3971352028060100B41305 /* zvbvmem.h */,
 			);
 			name = vbv;
-			path = ../../../external/r2slv4/r2vt4/src/vbv;
+			path = ../../../workspace/r2slv4/r2vt4/src/vbv;
 			sourceTree = "<group>";
 		};
 		5B3971252028060100B41305 /* dep */ = {
@@ -856,7 +856,7 @@
 				5B39713D2028060100B41305 /* zfilter.h */,
 			);
 			name = fea;
-			path = ../../../external/r2slv4/r2vt4/src/fea;
+			path = ../../../workspace/r2slv4/r2vt4/src/fea;
 			sourceTree = "<group>";
 		};
 		5B39713E2028060100B41305 /* buff */ = {
@@ -866,7 +866,7 @@
 				5B3971402028060100B41305 /* zbuff.h */,
 			);
 			name = buff;
-			path = ../../../external/r2slv4/r2vt4/src/buff;
+			path = ../../../workspace/r2slv4/r2vt4/src/buff;
 			sourceTree = "<group>";
 		};
 		5B39719F2028061500B41305 /* Frameworks */ = {
@@ -1715,7 +1715,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				"LIBRARY_SEARCH_PATHS[arch=*]" = /Users/daixiang/external/thirdlib/mac/lib;
+				"LIBRARY_SEARCH_PATHS[arch=*]" = /Users/daixiang/workspace/thirdlib/mac/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.12.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1737,7 +1737,7 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
-				"HEADER_SEARCH_PATHS[arch=*]" = /Users/daixiang/external/thirdlib/mac/include;
+				"HEADER_SEARCH_PATHS[arch=*]" = /Users/daixiang/workspace/thirdlib/mac/include;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1760,8 +1760,8 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
-				"HEADER_SEARCH_PATHS[arch=*]" = /Users/daixiang/external/thirdlib/mac/include;
-				"LIBRARY_SEARCH_PATHS[arch=*]" = /Users/daixiang/external/thirdlib/mac/lib;
+				"HEADER_SEARCH_PATHS[arch=*]" = /Users/daixiang/workspace/thirdlib/mac/include;
+				"LIBRARY_SEARCH_PATHS[arch=*]" = /Users/daixiang/workspace/thirdlib/mac/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1847,7 +1847,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				"LIBRARY_SEARCH_PATHS[arch=*]" = /Users/daixiang/external/thirdlib/mac/lib;
+				"LIBRARY_SEARCH_PATHS[arch=*]" = /Users/daixiang/workspace/thirdlib/mac/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.12.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1868,7 +1868,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/external/lib",
+					"$(PROJECT_DIR)/workspace/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1881,7 +1881,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/external/lib",
+					"$(PROJECT_DIR)/workspace/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1894,7 +1894,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/external/lib",
+					"$(PROJECT_DIR)/workspace/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1907,7 +1907,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/external/lib",
+					"$(PROJECT_DIR)/workspace/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";

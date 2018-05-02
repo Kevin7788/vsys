@@ -52,14 +52,14 @@ void test_activation(){
     
     bool loop = true;
     srand(time(nullptr));
-    VsysActivationInst handle =  VsysActivation_Create(&param, "/Users/daixiang/external/thirdlib", true);
+    VsysActivationInst handle =  VsysActivation_Create(&param, "/Users/daixiang/workspace/thirdlib", true);
     
     vt_word_t vt_word;
     memset(&vt_word, 0, sizeof(vt_word_t));
     vt_word.type = VSYS_WORD_AWAKE;
     strcpy(vt_word.phone, "r|l|r_B|l_B|# w o4|o4_E|## q|q_B|# i2|i2_E|##");
     strcpy(vt_word.word_utf8, "若琪");
-    strcpy(vt_word.nnet_path, "/Users/daixiang/external/thirdlib/workdir_cn/final.ruoqi.mod");
+    strcpy(vt_word.nnet_path, "/Users/daixiang/workspace/thirdlib/workdir_cn/final.ruoqi.mod");
     vt_word.mask |= VT_WORD_USE_OUTSIDE_PHONE_MASK
     | VT_WORD_LOCAL_CLASSIFY_CHECK_MASK;
     VsysActivation_AddVtWord(handle, &vt_word);
